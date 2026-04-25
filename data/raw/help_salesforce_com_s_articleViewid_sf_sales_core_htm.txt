@@ -1,0 +1,214 @@
+# Salesforce Sales Cloud — Core Features Overview
+
+---
+
+## What Is Sales Cloud and Why Do Companies Buy It?
+
+Sales Cloud is Salesforce's core customer relationship management (CRM) platform built specifically to support sales teams. It centralizes every piece of data related to prospects, customers, and deals in one system of record. Instead of tracking leads in spreadsheets, logging calls in personal notes, or managing pipeline in disconnected tools, Sales Cloud gives the entire revenue team — SDRs, AEs, managers, and leadership — a single shared view of the business.
+
+Companies invest in Sales Cloud for several concrete reasons:
+
+- **Visibility**: Managers can see every deal, every stage, and every rep's activity without asking for status updates
+- **Accountability**: Every call, email, and meeting is logged and timestamped, creating a clear record of what happened with each prospect
+- **Forecasting accuracy**: Leadership can predict revenue based on real pipeline data rather than gut instinct
+- **Process consistency**: Every SDR and AE follows the same defined workflow, which makes onboarding faster and performance easier to measure
+- **Scalability**: As the sales team grows, the system scales without breaking down
+
+**Example**: A VP of Sales at a 200-person SaaS company uses Sales Cloud to run a Monday pipeline review. Instead of asking each AE to prepare a slide deck, she opens a single dashboard that shows every open opportunity, its current stage, expected close date, and last activity. That visibility is why the company pays for Sales Cloud.
+
+As an SDR, you are one of the primary data entry points for this system. The quality of what you log directly affects the quality of what leadership sees.
+
+---
+
+## Key Objects: Leads, Contacts, Accounts, Opportunities, Activities
+
+Salesforce organizes data into **objects** — think of each object as a category of record with its own fields, rules, and relationships. These are the five objects you will work with every day.
+
+### Leads
+
+A **Lead** is an individual who has shown interest or been identified as a potential prospect but has not yet been qualified. Leads live in their own isolated section of Salesforce and are not yet connected to an Account or Opportunity.
+
+Key Lead fields you will use:
+- **Lead Status**: New, Working, Nurturing, Qualified, Unqualified, Converted
+- **Lead Source**: Web, Outbound Prospecting, Event, Referral, Inbound
+- **First Name / Last Name / Title / Company / Email / Phone**
+- **Lead Owner**: the rep responsible for working the lead
+- **Description**: free-text field for notes on the prospect's situation
+
+When a Lead is qualified, you **Convert** it using the "Convert" button on the Lead record. Conversion creates three new records simultaneously: an Account, a Contact, and (optionally) an Opportunity.
+
+### Contacts
+
+A **Contact** is a person who is associated with an Account. Once a Lead is converted, the individual becomes a Contact. Contacts have all the same personal information fields as Leads but are now connected to a company record.
+
+Key Contact fields:
+- **Account Name**: the company this person works for
+- **Title / Department**
+- **Email / Phone / Mobile**
+- **Contact Owner**
+- **Reports To**: used to map org charts within an account
+
+### Accounts
+
+An **Account** is a company record. Every Contact, Opportunity, and Activity eventually ties back to an Account. Accounts give the team a complete view of everything happening with a specific company.
+
+Key Account fields:
+- **Account Name**
+- **Industry / Type / Annual Revenue / Number of Employees**
+- **Account Owner**
+- **Billing Address**
+- **Website**
+
+**Example**: If you convert a Lead for "Sarah Chen, Director of Marketing at Acme Corp," Salesforce creates a Contact record for Sarah and an Account record for Acme Corp. Any future contacts you find at Acme Corp get linked to the same Account, building a complete picture of that company over time.
+
+### Opportunities
+
+An **Opportunity** is an active sales deal. It represents a potential revenue event with a specific Account. Opportunities have defined stages that track where a deal is in the sales process.
+
+Key Opportunity fields:
+- **Opportunity Name**: typically formatted as "Account Name — Product — Year"
+- **Stage**: the current step in the sales process (see Pipeline section below)
+- **Amount**: expected deal value in dollars
+- **Close Date**: the expected date the deal will close
+- **Probability**: auto-populated based on stage, represents likelihood of closing
+- **Next Step**: a text field describing the immediate next action
+
+### Activities
+
+**Activities** are the logged interactions that happen throughout the sales process. There are two types:
+
+- **Tasks**: to-do items (e.g., "Call Sarah Chen on Thursday")
+- **Events**: calendar-based meetings or calls with a start and end time
+
+Activities appear in the **Activity Timeline** on any Lead, Contact, Account, or Opportunity record. They create the historical record of every touchpoint with a prospect.
+
+---
+
+## How Sales Cloud Fits Into the SDR-to-AE Handoff Workflow
+
+The SDR-to-AE handoff is one of the most critical moments in the sales process, and Sales Cloud is the tool that makes it clean, documented, and repeatable.
+
+Here is the standard workflow:
+
+1. **SDR identifies a prospect** → Creates or receives a Lead record in Salesforce
+2. **SDR works the Lead** → Logs calls, sends emails, updates Lead Status to "Working"
+3. **SDR qualifies the Lead** → Confirms budget, authority, need, and timeline (BANT or equivalent framework)
+4. **SDR converts the Lead** → Clicks "Convert" on the Lead record, which creates an Account, Contact, and Opportunity
+5. **SDR schedules a discovery call** → Creates an Event on the Opportunity record and invites the AE
+6. **SDR updates the Opportunity** → Fills in Next Step, adds qualification notes to the Description or a custom field like "Qualification Notes"
+7. **AE accepts the handoff** → Reviews the Opportunity record, reads all logged activities, and takes ownership
+
+The key principle: **the AE should be able to open the Opportunity record and understand the full context of the prospect without asking the SDR a single question.** If your notes are incomplete, the handoff fails.
+
+**Example**: You've had three calls with Marcus Webb, VP of Operations at Bridgewater Manufacturing. You convert the Lead, create an Opportunity named "Bridgewater Manufacturing — Enterprise — 2025," set the Stage to "Discovery," log a summary of all three calls in the Activity Timeline, fill in the Next Step field with "AE intro call scheduled for Thursday 2pm," and tag the AE in a Chatter post on the Opportunity. The AE walks into Thursday's call fully prepared.
+
+---
+
+## Pipeline Management, Forecasting, and Quota Tracking
+
+### Pipeline Stages
+
+Salesforce Opportunities move through defined stages that your company configures. A typical B2B SaaS stage progression looks like this:
+
+- **Prospecting** (10% probability): Lead identified, no contact made
+- **Discovery** (20%): Initial qualifying conversation completed
+- **Qualification** (40%): BANT confirmed, decision-maker engaged
+- **Proposal / Demo** (60%): Formal presentation or demo delivered
+- **Negotiation** (80%): Pricing and terms being discussed
+- **Closed Won** (100%): Deal signed
+- **Closed Lost** (0%): Deal lost, with a required "Loss Reason" field
+
+As an SDR, you will primarily work in the Prospecting and Discovery stages. Your job is to move Opportunities from Prospecting into Discovery and hand them off to AEs in a clean state.
+
+### Forecasting
+
+Sales Cloud has a built-in **Forecasting** module (navigate via the App Launcher → Forecasts). Forecasting aggregates all open Opportunities by owner, stage, and close date to project expected revenue for a given period.
+
+Forecast categories include:
+- **Pipeline**: early-stage deals with low probability
+- **Best Case**: deals that could close with favorable conditions
+- **Commit**: deals the rep is confident will close this period
+- **Closed**: deals already won
+
+Managers use these categories in weekly forecast calls to assess where the team stands against quota.
+
+### Quota Tracking
+
+Your quota as an SDR is typically measured in **Meetings Set**, **Qualified Opportunities Created**, or **Pipeline Generated** (dollar value). Salesforce tracks this through:
+
+- **Reports**: Custom reports that count Opportunities created by SDR within a date range
+- **Dashboards**: Visual displays that show your numbers against target in real time
+- **Goals/Targets**: Some orgs use the native Salesforce Goals feature or a connected tool like Clari
+
+**Example**: Your monthly quota is 15 qualified meetings. You navigate to your SDR Activity Dashboard, which shows a bar chart of Opportunities created by each SDR this month. You're at 11 with one week left. You know you need 4 more and can plan your outreach accordingly.
+
+---
+
+## Common Sales Cloud Integrations
+
+Sales Cloud does not operate in isolation. Most sales teams connect it to the tools reps use every day.
+
+### Outlook / Gmail (Email Integration)
+- Syncs emails sent from your inbox directly to the corresponding Lead, Contact, or Opportunity record in Salesforce
+- The **Salesforce for Outlook** add-in or **Einstein Activity Capture** handles this automatically
+- Eliminates the need to manually log every email you send
+
+### Slack
+- The **Salesforce for Slack** integration allows reps to receive deal alerts, update Opportunity fields, and create records directly from Slack
+- Managers can set up automated notifications (e.g., "Alert #sales-channel when an Opportunity moves to Closed Won")
+- SDRs use it to notify AEs of hot leads without leaving Slack
+
+### Zoom
+- Zoom meetings scheduled through Salesforce automatically log as Events on the relevant record
+- Post-meeting, Zoom can push attendance data and recording links back to the Activity Timeline
+
+### Gong
+- Gong records, transcribes, and analyzes sales calls
+- The Gong-Salesforce integration pushes call recordings and AI-generated summaries directly to the Activity Timeline on the relevant Contact or Opportunity
+- SDRs can review their own calls for coaching and log them without manual data entry
+
+**Example**: You run a discovery call over Zoom with a prospect. Gong records it, generates a transcript and summary, and pushes both to the Opportunity record in Salesforce. Your AE can listen to the call before the handoff meeting without you needing to brief them separately.
+
+---
+
+## How SDRs Use Sales Cloud Daily
+
+Your daily workflow in Salesforce will follow a consistent rhythm. Here is what that looks like in practice.
+
+### Morning: Review Your Queue
+- Navigate to **Leads** → **My Open Leads** list view to see all active leads you own
+- Check the **Activity Timeline** on priority leads to see what happened last and what's due today
+- Open your **Task List** (Home tab → My Tasks) to see all tasks due today
+
+### Logging Calls
+- Open the Lead or Contact record
+- Click **"Log a Call"** in the Activity section (or use the **New Activity** button)
+- Fill in:
+  - **Subject**: "Call — [Date]" or a descriptive label
+  - **Status**: Completed
+  - **Call Result**: Connected / Left Voicemail / No Answer
+  - **Description**: What was discussed, objections raised, next steps agreed upon
+- Save the record
+
+### Updating Lead Status
+- On the Lead record, find the **Lead Status** field (usually visible in the highlights panel at the top)
+- Click the field to edit inline, or use the **Edit** button
+- Update from "New" to "Working," "Qualified," etc. based on where the conversation stands
+
+### Creating Tasks
+- On any record, click **"New Task"** in the Activity section
+- Fill in:
+  - **Subject**: "Follow up call — Sarah Chen"
+  - **Due Date**: the specific date you plan to complete it
+  - **Priority**: High / Normal / Low
+  - **Assigned To**: yourself (or another rep if delegating)
+- Save — the task will appear in your Task List on the due date
+
+### Converting a Qualified Lead
+- Open the Lead record
+- Click the **"Convert"** button (top right of the record)
+- Salesforce prompts you to create or match an existing Account, create a Contact, and optionally create an Opportunity
+- Fill in the Opportunity Name, Stage (typically "Discovery"), Amount (if known), and Close Date
+- Click **"Convert"** to complete the process
+
+**Example**: You finish a qualifying call with a prospect at 10am. Before your next call at 10:30, you spend 5 minutes logging the call with detailed notes, updating the Lead Status to "Qualified," creating a follow-up task for yourself, and converting the Lead to an Opportunity. By 10:30, the record is clean and the

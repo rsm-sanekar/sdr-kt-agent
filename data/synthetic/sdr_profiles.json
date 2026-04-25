@@ -1,0 +1,632 @@
+[
+  {
+    "name": "Jordan Calloway",
+    "age": 24,
+    "prior_experience_years": 1,
+    "territory": "AMER",
+    "vertical": "SaaS",
+    "experience_level": "entry",
+    "annual_quota_usd": 180000,
+    "previous_company": "HubSpot",
+    "education": "B.S. Marketing, University of Michigan",
+    "key_strengths": [
+      "High call volume discipline",
+      "CRM hygiene",
+      "Coachability"
+    ],
+    "areas_for_development": [
+      "Objection handling",
+      "Executive-level messaging",
+      "Pipeline forecasting accuracy"
+    ]
+  },
+  {
+    "name": "Priya Nambiar",
+    "age": 29,
+    "prior_experience_years": 4,
+    "territory": "APAC",
+    "vertical": "fintech",
+    "experience_level": "mid",
+    "annual_quota_usd": 280000,
+    "previous_company": "Stripe",
+    "education": "B.Com Finance, University of Melbourne",
+    "key_strengths": [
+      "Regulatory compliance knowledge",
+      "Multi-threaded prospecting",
+      "Fluency in Mandarin and Tamil"
+    ],
+    "areas_for_development": [
+      "Time zone management across APAC",
+      "Shortening discovery calls",
+      "Salesforce activity logging consistency"
+    ]
+  },
+  {
+    "name": "Marcus Delgado",
+    "age": 34,
+    "prior_experience_years": 8,
+    "territory": "AMER",
+    "vertical": "healthcare",
+    "experience_level": "senior",
+    "annual_quota_usd": 420000,
+    "previous_company": "Epic Systems",
+    "education": "B.S. Health Informatics, Arizona State University",
+    "key_strengths": [
+      "HIPAA-aware value selling",
+      "C-suite relationship building",
+      "Consistent overachievement against quota"
+    ],
+    "areas_for_development": [
+      "Adopting AI prospecting tools",
+      "Delegation to junior SDRs",
+      "Reducing dependency on email-only outreach"
+    ]
+  },
+  {
+    "name": "Sophie Beaumont",
+    "age": 26,
+    "prior_experience_years": 2,
+    "territory": "EMEA",
+    "vertical": "retail",
+    "experience_level": "entry",
+    "annual_quota_usd": 195000,
+    "previous_company": "Shopify",
+    "education": "BA Business Management, University of Leeds",
+    "key_strengths": [
+      "Social selling via LinkedIn",
+      "Product demo enthusiasm",
+      "Fast ramp-up speed"
+    ],
+    "areas_for_development": [
+      "GDPR-compliant outreach sequencing",
+      "Handling procurement gatekeepers",
+      "Building longer-term pipeline"
+    ]
+  },
+  {
+    "name": "Tom\u00e1s Reyes",
+    "age": 31,
+    "prior_experience_years": 6,
+    "territory": "AMER",
+    "vertical": "manufacturing",
+    "experience_level": "mid",
+    "annual_quota_usd": 310000,
+    "previous_company": "Siemens Digital Industries",
+    "education": "B.S. Industrial Engineering, Purdue University",
+    "key_strengths": [
+      "Technical credibility with plant managers",
+      "Account-based prospecting",
+      "Spanish-language outreach for LATAM sub-territory"
+    ],
+    "areas_for_development": [
+      "Improving connect-to-meeting conversion rate",
+      "Leveraging intent data platforms",
+      "Shortening sales cycle initiation"
+    ]
+  },
+  {
+    "name": "Aiko Tanaka",
+    "age": 27,
+    "prior_experience_years": 3,
+    "territory": "APAC",
+    "vertical": "SaaS",
+    "experience_level": "mid",
+    "annual_quota_usd": 250000,
+    "previous_company": "Atlassian",
+    "education": "B.S. Information Systems, Keio University",
+    "key_strengths": [
+      "Sequencing personalization at scale",
+      "Cultural adaptability across APAC markets",
+      "Data-driven outreach optimization"
+    ],
+    "areas_for_development": [
+      "Confidence on cold calls",
+      "Translating technical features to business outcomes",
+      "Managing a high-volume pipeline without burnout"
+    ]
+  },
+  {
+    "name": "Lena Hoffmann",
+    "age": 38,
+    "prior_experience_years": 12,
+    "territory": "EMEA",
+    "vertical": "government",
+    "experience_level": "senior",
+    "annual_quota_usd": 390000,
+    "previous_company": "SAP Public Services",
+    "education": "M.A. Public Administration, Freie Universit\u00e4t Berlin",
+    "key_strengths": [
+      "Navigating long public-sector procurement cycles",
+      "German and French fluency",
+      "Stakeholder mapping in complex accounts"
+    ],
+    "areas_for_development": [
+      "Modernizing outreach beyond relationship-led selling",
+      "Adapting messaging for cloud-first government mandates",
+      "Embracing video prospecting tools"
+    ]
+  },
+  {
+    "name": "Devon Carter",
+    "age": 23,
+    "prior_experience_years": 0,
+    "territory": "AMER",
+    "vertical": "fintech",
+    "experience_level": "entry",
+    "annual_quota_usd": 160000,
+    "previous_company": "N/A (Campus hire)",
+    "education": "B.S. Finance, Howard University",
+    "key_strengths": [
+      "Exceptional active listening",
+      "High energy and resilience",
+      "Strong foundational Salesforce CRM training"
+    ],
+    "areas_for_development": [
+      "Building a repeatable outbound cadence",
+      "Understanding fintech competitive landscape",
+      "Overcoming call reluctance"
+    ]
+  },
+  {
+    "name": "Rhiannon Patel",
+    "age": 30,
+    "prior_experience_years": 5,
+    "territory": "EMEA",
+    "vertical": "healthcare",
+    "experience_level": "mid",
+    "annual_quota_usd": 295000,
+    "previous_company": "Veeva Systems",
+    "education": "BSc Life Sciences, University of Edinburgh",
+    "key_strengths": [
+      "Life sciences domain expertise",
+      "Multi-channel sequencing discipline",
+      "Strong meeting-to-opportunity conversion rate"
+    ],
+    "areas_for_development": [
+      "Expanding beyond pharma into med-device segment",
+      "Improving follow-up cadence after no-shows",
+      "Developing a personal brand on LinkedIn"
+    ]
+  },
+  {
+    "name": "James Okafor",
+    "age": 33,
+    "prior_experience_years": 7,
+    "territory": "APAC",
+    "vertical": "retail",
+    "experience_level": "senior",
+    "annual_quota_usd": 400000,
+    "previous_company": "Oracle Retail",
+    "education": "MBA, INSEAD Singapore",
+    "key_strengths": [
+      "Executive presence in QBR and discovery settings",
+      "Cross-functional collaboration with AEs and SEs",
+      "Consistent 120%+ quota attainment history"
+    ],
+    "areas_for_development": [
+      "Reducing average days-to-first-meeting",
+      "Coaching and mentoring junior SDR teammates",
+      "Leveraging Salesforce Einstein analytics for territory planning"
+    ]
+  },
+  {
+    "name": "Jordan Alvarez",
+    "age": 24,
+    "prior_experience_years": 1,
+    "territory": "AMER",
+    "vertical": "SaaS",
+    "experience_level": "entry",
+    "annual_quota_usd": 180000,
+    "previous_company": "HubSpot",
+    "education": "B.S. Marketing, University of Texas at Austin",
+    "key_strengths": [
+      "High call volume discipline",
+      "CRM hygiene",
+      "Coachability"
+    ],
+    "areas_for_development": [
+      "Discovery questioning depth",
+      "Handling technical objections",
+      "Pipeline forecasting accuracy"
+    ]
+  },
+  {
+    "name": "Priya Nair",
+    "age": 27,
+    "prior_experience_years": 3,
+    "territory": "EMEA",
+    "vertical": "fintech",
+    "experience_level": "mid",
+    "annual_quota_usd": 240000,
+    "previous_company": "Revolut",
+    "education": "B.A. Economics, University of Edinburgh",
+    "key_strengths": [
+      "Multilingual outreach (English, Hindi, French)",
+      "Regulatory compliance awareness",
+      "LinkedIn social selling"
+    ],
+    "areas_for_development": [
+      "Time-zone management across EMEA regions",
+      "Executive-level messaging",
+      "Shortening sales cycle on enterprise accounts"
+    ]
+  },
+  {
+    "name": "Marcus Webb",
+    "age": 31,
+    "prior_experience_years": 6,
+    "territory": "AMER",
+    "vertical": "healthcare",
+    "experience_level": "senior",
+    "annual_quota_usd": 320000,
+    "previous_company": "Veeva Systems",
+    "education": "B.S. Biology, Michigan State University",
+    "key_strengths": [
+      "HIPAA and compliance fluency",
+      "Stakeholder mapping in complex orgs",
+      "Consistent quota overachievement"
+    ],
+    "areas_for_development": [
+      "Delegation and peer mentoring",
+      "Adapting pitch for non-clinical buyers",
+      "Reducing reliance on email-only outreach"
+    ]
+  },
+  {
+    "name": "Sophie Beaumont",
+    "age": 23,
+    "prior_experience_years": 0,
+    "territory": "EMEA",
+    "vertical": "retail",
+    "experience_level": "entry",
+    "annual_quota_usd": 160000,
+    "previous_company": "Zara (retail associate internship)",
+    "education": "B.A. Business Administration, Sciences Po Paris",
+    "key_strengths": [
+      "Customer empathy from retail background",
+      "Written communication clarity",
+      "Enthusiasm and resilience"
+    ],
+    "areas_for_development": [
+      "Cold calling confidence",
+      "Salesforce platform proficiency",
+      "Understanding B2B buying cycles"
+    ]
+  },
+  {
+    "name": "Ethan Kim",
+    "age": 29,
+    "prior_experience_years": 4,
+    "territory": "APAC",
+    "vertical": "manufacturing",
+    "experience_level": "mid",
+    "annual_quota_usd": 210000,
+    "previous_company": "Siemens Digital Industries",
+    "education": "B.Eng. Industrial Engineering, Seoul National University",
+    "key_strengths": [
+      "Technical product knowledge",
+      "Relationship-based selling in APAC markets",
+      "Strong Korean and English bilingual skills"
+    ],
+    "areas_for_development": [
+      "Moving beyond relationship selling to value-based selling",
+      "Prospecting outside existing network",
+      "Negotiation and pricing conversations"
+    ]
+  },
+  {
+    "name": "Aaliyah Thompson",
+    "age": 26,
+    "prior_experience_years": 2,
+    "territory": "AMER",
+    "vertical": "government",
+    "experience_level": "entry",
+    "annual_quota_usd": 175000,
+    "previous_company": "Carahsoft Technology",
+    "education": "B.A. Political Science, Howard University",
+    "key_strengths": [
+      "Understanding of public sector procurement",
+      "Patience with long sales cycles",
+      "Research and account planning"
+    ],
+    "areas_for_development": [
+      "Urgency creation in slow-moving accounts",
+      "Expanding contacts beyond IT departments",
+      "Confidence in C-suite conversations"
+    ]
+  },
+  {
+    "name": "Liam O'Brien",
+    "age": 33,
+    "prior_experience_years": 8,
+    "territory": "EMEA",
+    "vertical": "SaaS",
+    "experience_level": "senior",
+    "annual_quota_usd": 350000,
+    "previous_company": "Salesforce (AE promotion candidate)",
+    "education": "B.Comm. Finance, University College Dublin",
+    "key_strengths": [
+      "Multi-threading across buying committees",
+      "Outbound sequence design and optimization",
+      "Mentoring junior SDR cohorts"
+    ],
+    "areas_for_development": [
+      "Transitioning SDR skills toward full-cycle AE role",
+      "Managing personal burnout and workload",
+      "Embracing new AI-assisted prospecting tools"
+    ]
+  },
+  {
+    "name": "Mei-Ling Zhang",
+    "age": 25,
+    "prior_experience_years": 2,
+    "territory": "APAC",
+    "vertical": "fintech",
+    "experience_level": "entry",
+    "annual_quota_usd": 190000,
+    "previous_company": "Ant Group",
+    "education": "B.S. Finance, Fudan University",
+    "key_strengths": [
+      "Deep fintech ecosystem knowledge",
+      "Mandarin and English fluency",
+      "High responsiveness and follow-through"
+    ],
+    "areas_for_development": [
+      "Structured storytelling in demos",
+      "Objection handling for data privacy concerns",
+      "Building pipeline outside warm referrals"
+    ]
+  },
+  {
+    "name": "DeShawn Parker",
+    "age": 28,
+    "prior_experience_years": 3,
+    "territory": "AMER",
+    "vertical": "retail",
+    "experience_level": "mid",
+    "annual_quota_usd": 230000,
+    "previous_company": "Shopify",
+    "education": "B.S. Communications, Florida A&M University",
+    "key_strengths": [
+      "E-commerce and omnichannel fluency",
+      "High meeting conversion rate from cold outreach",
+      "Energetic phone presence"
+    ],
+    "areas_for_development": [
+      "Written outreach personalization at scale",
+      "Navigating enterprise vs. mid-market motion differences",
+      "Consistent activity during Q4 retail blackout periods"
+    ]
+  },
+  {
+    "name": "Ingrid Svensson",
+    "age": 30,
+    "prior_experience_years": 5,
+    "territory": "EMEA",
+    "vertical": "healthcare",
+    "experience_level": "senior",
+    "annual_quota_usd": 310000,
+    "previous_company": "Philips HealthTech",
+    "education": "M.Sc. Health Informatics, Karolinska Institute",
+    "key_strengths": [
+      "Clinical workflow expertise",
+      "Stakeholder navigation in NHS and EU health systems",
+      "Data-driven outreach sequencing"
+    ],
+    "areas_for_development": [
+      "Reducing over-reliance on product features vs. business outcomes",
+      "Cross-selling into adjacent Salesforce Health Cloud modules",
+      "Shortening ramp time when entering new sub-verticals"
+    ]
+  },
+  {
+    "name": "Jordan Whitfield",
+    "age": 24,
+    "prior_experience_years": 1,
+    "territory": "AMER",
+    "vertical": "SaaS",
+    "experience_level": "entry",
+    "annual_quota_usd": 180000,
+    "previous_company": "Salesforce Futureforce Intern",
+    "education": "B.S. Business Administration, University of Arizona",
+    "key_strengths": [
+      "High call volume discipline",
+      "CRM hygiene",
+      "Coachability"
+    ],
+    "areas_for_development": [
+      "Discovery question depth",
+      "Objection handling",
+      "Pipeline forecasting accuracy"
+    ]
+  },
+  {
+    "name": "Priya Nair",
+    "age": 27,
+    "prior_experience_years": 3,
+    "territory": "EMEA",
+    "vertical": "fintech",
+    "experience_level": "mid",
+    "annual_quota_usd": 240000,
+    "previous_company": "Revolut",
+    "education": "B.A. Economics, University of Edinburgh",
+    "key_strengths": [
+      "Multilingual outreach (English, Hindi, French)",
+      "Financial services domain expertise",
+      "Social selling via LinkedIn"
+    ],
+    "areas_for_development": [
+      "Time zone management across EMEA regions",
+      "Enterprise account mapping",
+      "Formal presentation skills"
+    ]
+  },
+  {
+    "name": "Marcus Delgado",
+    "age": 31,
+    "prior_experience_years": 6,
+    "territory": "AMER",
+    "vertical": "healthcare",
+    "experience_level": "senior",
+    "annual_quota_usd": 320000,
+    "previous_company": "Veeva Systems",
+    "education": "B.S. Health Informatics, Ohio State University",
+    "key_strengths": [
+      "HIPAA compliance knowledge",
+      "C-suite engagement",
+      "Outbound sequence personalization"
+    ],
+    "areas_for_development": [
+      "Delegating research tasks to junior SDRs",
+      "Reducing average sales cycle length",
+      "Cross-functional collaboration with AEs"
+    ]
+  },
+  {
+    "name": "Aiko Tanaka",
+    "age": 25,
+    "prior_experience_years": 2,
+    "territory": "APAC",
+    "vertical": "retail",
+    "experience_level": "entry",
+    "annual_quota_usd": 160000,
+    "previous_company": "Rakuten",
+    "education": "B.Com Marketing, University of Melbourne",
+    "key_strengths": [
+      "Bilingual outreach (English, Japanese)",
+      "E-commerce trend awareness",
+      "High email open-rate optimization"
+    ],
+    "areas_for_development": [
+      "Cold calling confidence",
+      "Navigating complex org structures",
+      "Meeting quota consistency"
+    ]
+  },
+  {
+    "name": "Samuel Okonkwo",
+    "age": 29,
+    "prior_experience_years": 4,
+    "territory": "EMEA",
+    "vertical": "manufacturing",
+    "experience_level": "mid",
+    "annual_quota_usd": 260000,
+    "previous_company": "Siemens Digital Industries",
+    "education": "B.Eng. Industrial Engineering, University of Lagos",
+    "key_strengths": [
+      "Technical product articulation",
+      "Long-cycle deal patience",
+      "Strong referral network"
+    ],
+    "areas_for_development": [
+      "Digital outreach cadence consistency",
+      "CRM data entry timeliness",
+      "Adapting pitch for non-technical buyers"
+    ]
+  },
+  {
+    "name": "Claire Beaumont",
+    "age": 33,
+    "prior_experience_years": 8,
+    "territory": "EMEA",
+    "vertical": "SaaS",
+    "experience_level": "senior",
+    "annual_quota_usd": 340000,
+    "previous_company": "HubSpot",
+    "education": "M.Sc. Digital Marketing, IE Business School (Madrid)",
+    "key_strengths": [
+      "Account-based selling strategy",
+      "Mentoring junior SDR peers",
+      "Consistent overachievement vs. quota"
+    ],
+    "areas_for_development": [
+      "Transitioning toward AE role readiness",
+      "Reducing over-reliance on inbound leads",
+      "Managing burnout during peak quarters"
+    ]
+  },
+  {
+    "name": "Tyler Nguyen",
+    "age": 23,
+    "prior_experience_years": 0,
+    "territory": "AMER",
+    "vertical": "government",
+    "experience_level": "entry",
+    "annual_quota_usd": 150000,
+    "previous_company": "U.S. Army (enlisted, non-commissioned officer)",
+    "education": "B.A. Political Science, George Mason University",
+    "key_strengths": [
+      "Resilience and grit under pressure",
+      "Compliance and process orientation",
+      "Relationship trust-building"
+    ],
+    "areas_for_development": [
+      "SaaS product knowledge ramp",
+      "Adapting military communication style to corporate sales",
+      "Outbound prospecting tool proficiency"
+    ]
+  },
+  {
+    "name": "Fatima Al-Rashidi",
+    "age": 28,
+    "prior_experience_years": 3,
+    "territory": "EMEA",
+    "vertical": "fintech",
+    "experience_level": "mid",
+    "annual_quota_usd": 230000,
+    "previous_company": "Stripe",
+    "education": "B.Sc. Computer Science, American University of Beirut",
+    "key_strengths": [
+      "API and payments domain fluency",
+      "Arabic and English bilingual outreach",
+      "Data-driven prospecting with Salesforce reports"
+    ],
+    "areas_for_development": [
+      "Confidence in executive-level cold calls",
+      "Managing a high-volume territory efficiently",
+      "Storytelling in demos and pitches"
+    ]
+  },
+  {
+    "name": "Devon Castillo",
+    "age": 26,
+    "prior_experience_years": 2,
+    "territory": "APAC",
+    "vertical": "healthcare",
+    "experience_level": "entry",
+    "annual_quota_usd": 170000,
+    "previous_company": "Medibank",
+    "education": "B.Health Science, University of Queensland",
+    "key_strengths": [
+      "Empathetic consultative tone",
+      "Healthcare buyer persona knowledge",
+      "Outbound email personalization"
+    ],
+    "areas_for_development": [
+      "Phone prospecting frequency",
+      "Navigating procurement gatekeepers",
+      "Pipeline velocity management"
+    ]
+  },
+  {
+    "name": "Ravi Subramaniam",
+    "age": 35,
+    "prior_experience_years": 9,
+    "territory": "APAC",
+    "vertical": "manufacturing",
+    "experience_level": "senior",
+    "annual_quota_usd": 350000,
+    "previous_company": "SAP",
+    "education": "M.B.A. Operations Management, Indian Institute of Management Bangalore",
+    "key_strengths": [
+      "ERP and supply chain solution selling",
+      "Executive relationship management",
+      "Cross-cultural negotiation across APAC markets"
+    ],
+    "areas_for_development": [
+      "Adopting modern AI-assisted prospecting tools",
+      "Reducing over-customization that slows outreach volume",
+      "Formal SDR-to-AE transition planning"
+    ]
+  }
+]
