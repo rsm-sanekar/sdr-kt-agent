@@ -31,7 +31,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 # ─── Toggle ──────────────────────────────────────────────────────────────────
 # Set MOCK_MODE = True to run without API keys or ChromaDB (hardcoded responses).
 # Set MOCK_MODE = False to use real claude-sonnet-4-6 + ChromaDB.
-MOCK_MODE = False
+MOCK_MODE = True
 # ─────────────────────────────────────────────────────────────────────────────
 
 

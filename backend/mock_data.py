@@ -514,6 +514,7 @@ MOCK_COACHING_NOTES: list[dict] = [
         "outcome": "Meeting booked for next Tuesday",
         "duration_minutes": 7,
         "overall_score": 88,
+        "score_breakdown": {"opening": 18, "discovery": 23, "objection_handling": 26, "close": 21},
         "what_worked": [
             "Opened with a specific financial metric (revenue close cycle) rather than a product feature — the prospect engaged immediately.",
             "Used silence effectively after the discovery question. Let the prospect talk for 90 seconds uninterrupted — uncovered a real pain point (end-of-quarter reporting chaos).",
@@ -538,6 +539,7 @@ MOCK_COACHING_NOTES: list[dict] = [
         "outcome": "Prospect hung up at 2:30",
         "duration_minutes": 2,
         "overall_score": 31,
+        "score_breakdown": {"opening": 5, "discovery": 6, "objection_handling": 12, "close": 8},
         "what_worked": [
             "Got past the gatekeeper — that's a real skill. Note how you mirrored the gatekeeper's tone.",
         ],
@@ -562,6 +564,7 @@ MOCK_COACHING_NOTES: list[dict] = [
         "outcome": "Requested email follow-up, no meeting booked",
         "duration_minutes": 5,
         "overall_score": 59,
+        "score_breakdown": {"opening": 16, "discovery": 15, "objection_handling": 16, "close": 12},
         "what_worked": [
             "Strong opener — led with a specific peer company outcome (Gong case study) that was highly relevant to a RevOps leader.",
             "Identified that the prospect has a manual reporting problem — that's a real pain point worth pursuing.",
