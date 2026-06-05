@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-anthropic
-openai
-chromadb
-python-dotenv
-beautifulsoup4
-requests

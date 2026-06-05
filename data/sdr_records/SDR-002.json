@@ -1,0 +1,42 @@
+{
+  "sdr_id": "SDR-002",
+  "name": "Marcus Chen",
+  "cohort": "Spring 2026",
+  "territory": "AMER FinTech",
+  "experience_level": "mid",
+  "events": [
+    {
+      "phase": "simulation",
+      "call": 1,
+      "date": "2026-03-18",
+      "scores": {
+        "opening": 8,
+        "discovery": 9,
+        "objection_handling": 8,
+        "close": 8
+      },
+      "transcript_file": "SDR-002/call-1-transcript.md"
+    },
+    {
+      "phase": "exam",
+      "date": "2026-04-22",
+      "qa_file": "SDR-002/certification-exam.md"
+    },
+    {
+      "phase": "coaching_note",
+      "call": 1,
+      "date": "2026-03-20",
+      "score": 8.5,
+      "note_file": "SDR-002/coaching-note-1.md"
+    },
+    {
+      "phase": "tutor_activity",
+      "top_topics": [
+        "MEDDIC",
+        "multi-threading",
+        "value messaging"
+      ],
+      "flagged_gaps": []
+    }
+  ]
+}

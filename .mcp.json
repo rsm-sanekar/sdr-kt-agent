@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "milestone03-example": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "mcp_servers.example_server"]
+    },
+    "sdr-onboarding-data": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "mcp_servers.data_server"]
+    },
+    "sdr-onboarding-tools": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "mcp_servers.tools_server"]
+    }
+  }
+}

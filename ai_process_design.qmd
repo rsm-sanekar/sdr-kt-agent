@@ -1,0 +1,212 @@
+---
+title: "SDR KT Onboarding Agent — Process Redesign"
+subtitle: "MGT 449 — Milestone 04 — Group 2"
+author:
+  - Anjali Roy
+  - Shreya Anekar
+date: 2026-06-04
+format:
+  pdf:
+    documentclass: article
+    geometry:
+      - margin=0.85in
+    fontsize: 11pt
+    toc: false
+    colorlinks: true
+---
+
+# AI-supported SDR onboarding workflow
+
+The diagram below maps the redesigned process. Color legend follows
+the Milestone 01 color system:
+
+- 🟢 **Green** — Human task
+- 🔴 **Red** — AI task (GenAI)
+- 🟣 **Purple** — Human review or approval
+- 🟠 **Orange** — Human + AI together
+- 🔵 **Blue** — Regular automation (no GenAI)
+
+```{mermaid}
+%%| fig-width: 7
+%%| fig-height: 9
+flowchart TB
+    A["New hire signed"] --> B["Generate onboarding plan<br>LLM + BM25 RAG"]
+    B --> C["Rank Trail Guide mentor<br>5-component score"]
+    C --> D["Draft welcome email<br>template slot-fill"]
+    D --> E["Manager gate<br>approve / edit / reject"]
+    E --> F["Day 1 - hire starts"]
+
+    F --> G["AI Tutor - cited answers<br>ChromaDB semantic"]
+    F --> H["Cold-Call Simulation<br>persona + scored debrief"]
+    F --> I["Coaching Notes<br>LLM scores transcript"]
+
+    G --> J["SDR approve / reject<br>tutor answer"]
+    I --> K["Manager review<br>coaching note"]
+
+    F --> L["Week 12 - Certification"]
+    L --> M["Certification gap analysis<br>LLM scores 5 dims + evidence"]
+    M --> N["Server-side band recompute<br>7+ PASS / 5-6 BORDERLINE / 4 or less FAIL"]
+    N --> O["Trainer Pass / Fail<br>+ required comment"]
+    O --> P["Certified SDR ramps"]
+
+    P --> Q["Post-cert debrief - SDR answers<br>7 process-feedback questions"]
+    Q --> R["LLM synthesizes debrief<br>what worked + barriers + fixes"]
+    R --> S["Manager review<br>approve / edit / reject"]
+    S --> T["Approved debrief<br>shared with enablement"]
+
+    style A fill:#10B981,stroke:#047857,color:#fff
+    style F fill:#10B981,stroke:#047857,color:#fff
+    style L fill:#10B981,stroke:#047857,color:#fff
+    style P fill:#10B981,stroke:#047857,color:#fff
+    style Q fill:#10B981,stroke:#047857,color:#fff
+    style T fill:#10B981,stroke:#047857,color:#fff
+    style B fill:#EF4444,stroke:#991B1B,color:#fff
+    style M fill:#EF4444,stroke:#991B1B,color:#fff
+    style R fill:#EF4444,stroke:#991B1B,color:#fff
+    style C fill:#3B82F6,stroke:#1E40AF,color:#fff
+    style D fill:#3B82F6,stroke:#1E40AF,color:#fff
+    style N fill:#3B82F6,stroke:#1E40AF,color:#fff
+    style E fill:#A855F7,stroke:#6B21A8,color:#fff
+    style J fill:#A855F7,stroke:#6B21A8,color:#fff
+    style K fill:#A855F7,stroke:#6B21A8,color:#fff
+    style O fill:#A855F7,stroke:#6B21A8,color:#fff
+    style S fill:#A855F7,stroke:#6B21A8,color:#fff
+    style G fill:#F97316,stroke:#9A3412,color:#fff
+    style H fill:#F97316,stroke:#9A3412,color:#fff
+    style I fill:#F97316,stroke:#9A3412,color:#fff
+```
+
+\newpage
+
+# What changed from the original process
+
+**Milestone 01 baseline.** A new SDR was onboarded manually by
+enablement (~2 hours per hire of customization), ramped through a
+generic Trailhead checklist regardless of prior experience, coached
+ad-hoc by their manager (3–5 hours per week of unstructured call
+review, 24–72 hour feedback latency), and certified through an
+opaque process by week 12. Once certified, there was no structured way
+to capture what worked (or didn't) during the ramp, so the onboarding
+program rarely improved cohort over cohort. Per RepVue Feb 2026,
+42% of new SDRs were hitting quota.
+
+**Redesigned workflow.** Three structural changes:
+
+1. **An orchestrated pre-boarding chain** drafts the plan, ranks a
+   mentor, and writes the welcome email before Day 1. A single
+   review gate gives the manager an approve/edit/reject/escalate
+   decision with the cited sources, the confidence score, and an
+   explicit warning when confidence is low.
+
+2. **Five on-demand AI coworker features** carry the SDR through
+   the 12-week ramp and out the door:
+   - **AI Tutor** — ChromaDB-semantic retrieval over 16 KB docs
+     with inline `[n]` citations and SDR-side approve/reject.
+   - **Cold Call Simulation** — stateless persona LLM + scored
+     debrief on the same Rubric v3.1 used by the coaching scorer.
+   - **Coaching Notes** — LLM scores a pasted call transcript
+     against the rubric and drafts a structured note; manager
+     reviews before delivery.
+   - **Certification Gap Analysis** — LLM scores the SDR's
+     simulation transcripts and certification exam against a
+     5-dimension rubric with quoted evidence per dimension; a
+     server-side band recompute overrides the LLM if its
+     self-reported verdict disagrees with the dimension scores; the
+     trainer makes the final Pass/Fail with a required comment.
+   - **Onboarding Debrief** — after passing certification the SDR
+     picks their own name from a dropdown (auto-fills
+     territory/vertical/experience) and walks a 7-question debrief on
+     their 12-week ramp; the AI synthesizes a manager-facing debrief
+     (per-element feedback, ramp barriers, suggested program
+     improvements); the manager reviews and shares it with enablement.
+
+3. **Auditability everywhere.** Every approve / edit / reject /
+   escalate decision is appended to `data/decision_log.json` with
+   the feature, action, and context. The dashboard reads this log.
+
+# Which steps should be faster or easier
+
+Per `estimates.md` (all assumptions, ranges labeled):
+
+| Step | Current | AI-supported |
+|---|---:|---:|
+| Build pre-boarding plan | 90–150 min | 10–20 min |
+| Rank Trail Guide mentor | 20–40 min | 5–10 min |
+| Draft welcome email | 15–30 min | 3–8 min |
+| Answer a product/policy question | 10–30 min | 1–3 min |
+| Coaching note from a call | 20–40 min | 5–12 min |
+| **Certification gap analysis** | **45–75 min** | **10–15 min** |
+| Post-cert onboarding debrief | 60–90 min (often skipped) | 10–15 min review |
+
+Net effect on the pre-boarding cycle: 125–220 min → 18–38 min;
+roughly $120–215 saved per hire at $70/hr fully-loaded.
+
+# Which steps still require human judgment
+
+Five explicit review gates remain:
+
+1. **Manager gate** at the end of the pre-boarding chain — approve,
+   edit, reject, escalate.
+2. **SDR-side approve/reject** on every tutor answer (the rejection
+   note is logged so future retrieval can avoid the bad chunk).
+3. **Manager review** of every coaching note before it reaches the
+   SDR.
+4. **Trainer decision** on certification — required comment, AI
+   recommendation is advisory only, server-recomputed band is the
+   source of truth.
+5. **Manager review** of every onboarding debrief before it is
+   shared with the enablement team.
+
+The three Milestone 01 checkpoints that are legally, financially, or
+organizationally loaded — certification, AE/territory assignment, and
+qualified-meeting verification — stay fully human.
+
+# Which steps are risky if fully automated
+
+- **Certification verdict drift.** The LLM might self-report PASS
+  while dimension scores warrant BORDERLINE. **Mitigation:**
+  server-side band recompute overrides; mismatch added to
+  `review_reasons` so the trainer sees *why* it's flagged.
+- **Onboarding plan hallucination.** The LLM might invent a
+  Trailhead module. **Mitigation:** module-ID allow-list enforced
+  against the catalog before the artifact is written.
+- **Coaching note unfairness.** A bad transcript or miscalibrated
+  rubric could deliver demoralizing feedback. **Mitigation:**
+  required manager approval before delivery.
+- **Tutor fabrication.** The May 25 baseline DeepEval runs showed
+  the tutor adding unsupported claims in 2 of 10 cases.
+  **Mitigation:** the tightened prompt's "block ungrounded
+  identifiers" rule + Faithfulness check in the eval suite caught
+  one of those (case 10 module-ID fabrication moved from 1/3 to 2/3
+  passing post-fix).
+- **Debrief over-generalization.** AI might over- or understate a
+  program issue from a sparse answer. **Mitigation:** low confidence
+  flags review and the manager edits the affected section before
+  approving.
+
+# What the AI coworker needs from data, tools, or documents
+
+**Data sources** (under `data/`):
+
+- `raw/sdr_profiles.csv` — new-hire records
+- `raw/ae_profiles.csv` — candidate mentors
+- `raw/summaries/` — per-hire summaries
+- `raw/sim_personas.json` — prospect personas for the cold-call simulator
+- `sdr_records/` — 7-SDR synthetic cohort (simulation transcripts, exam answers, coaching notes, cached gap analyses)
+- Runtime transcripts pasted into Coaching Notes; debrief answers from the Onboarding Debrief
+
+**Documents** — 16 docs in `rag/knowledge_base/`, including the
+certification rubric and the canonical 5-question exam bank for the
+cert feature, plus 7 scraped Wikipedia refs as background context.
+
+**Tools / Python functions** — 7 LLM skills, 2 deterministic
+automations, 2 MCP servers, 2 retrievers (BM25 + ChromaDB), plus the
+FastAPI orchestrator (used by the UI) and the CLI orchestrator (used
+for offline chain runs).
+
+# Final business output
+
+A **trained, certified, ramped SDR plus a structured debrief that
+feeds back into the onboarding program** — produced in 18–38 minutes
+of manager time per pre-boarding cycle instead of 125–220 minutes, with explicit human
+review at five gates and an audit log of every decision.

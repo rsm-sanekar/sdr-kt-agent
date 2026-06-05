@@ -1,0 +1,16 @@
+ae_id,name,territory,vertical,tenure_years,satisfaction_score,mentorship_hours_per_week,prior_mentees
+AE-001,Olivia Hartmann,EMEA,healthcare,7,4.6,3,5
+AE-002,Brandon Walsh,AMER-West,SaaS,5,4.4,4,7
+AE-003,Natalie Reyes,AMER-East,fintech,8,4.7,2,9
+AE-004,Sean Murphy,EMEA,SaaS,4,4.1,3,3
+AE-005,Mei Lin Tan,APAC,retail,6,4.5,2,6
+AE-006,Carlos Mendoza,AMER-West,healthcare,9,4.8,4,11
+AE-007,Lukas Becker,EMEA,fintech,6,4.3,3,4
+AE-008,Hiroshi Tanaka,APAC,SaaS,5,4.2,2,4
+AE-009,Rebecca Goldstein,AMER-East,retail,7,4.5,3,8
+AE-010,Anjali Sharma,APAC,fintech,4,3.9,1,2
+AE-011,Fiona MacLeod,EMEA,healthcare,10,4.7,2,12
+AE-012,Tyler Jackson,AMER-West,SaaS,3,3.7,5,1
+AE-013,Diego Fernandez,AMER-East,fintech,5,4.0,3,5
+AE-014,Wei Zhang,APAC,healthcare,8,4.4,2,7
+AE-015,Charlotte Dubois,EMEA,retail,6,3.8,4,3

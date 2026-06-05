@@ -1,0 +1,42 @@
+{
+  "sdr_id": "SDR-005",
+  "name": "Sarah Kim",
+  "cohort": "Spring 2026",
+  "territory": "AMER Healthcare",
+  "experience_level": "mid",
+  "events": [
+    {
+      "phase": "simulation",
+      "call": 1,
+      "date": "2026-03-19",
+      "scores": {
+        "opening": 8,
+        "discovery": 9,
+        "objection_handling": 8,
+        "close": 9
+      },
+      "transcript_file": "SDR-005/call-1-transcript.md"
+    },
+    {
+      "phase": "exam",
+      "date": "2026-04-24",
+      "qa_file": "SDR-005/certification-exam.md"
+    },
+    {
+      "phase": "coaching_note",
+      "call": 1,
+      "date": "2026-03-21",
+      "score": 8.5,
+      "note_file": "SDR-005/coaching-note-1.md"
+    },
+    {
+      "phase": "tutor_activity",
+      "top_topics": [
+        "discovery",
+        "MEDDIC",
+        "healthcare compliance"
+      ],
+      "flagged_gaps": []
+    }
+  ]
+}

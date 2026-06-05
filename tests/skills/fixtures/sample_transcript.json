@@ -1,0 +1,22 @@
+{
+  "hire_id": "HIRE-001",
+  "messages": [
+    {
+      "role": "sdr",
+      "text": "Hi Dr. Hassan, this is Priya from Salesforce. I'm reaching out because I saw your team at Meridian Health rolled out a new patient-portal initiative last quarter — congrats on that launch. The reason for my call is that healthcare orgs running portal rollouts often hit case-volume spikes in the first 90 days, and our Service Cloud Health workflow helps triage that surge. Do you have two minutes?"
+    },
+    {
+      "role": "prospect",
+      "text": "Hmm. Yeah, we're definitely seeing more inbound, but honestly we already have a ticketing tool. And I'm not sure we have budget for another system right now."
+    },
+    {
+      "role": "sdr",
+      "text": "Totally fair. Quick question — when you say more inbound, are most of those tickets routed to clinical staff or back-office? The reason I ask is that the budget conversation often shifts once teams see how much clinician time gets pulled into ticket triage. I'm not trying to sell you anything today — would it be useful to walk through how three other patient-portal launches handled that, just so you have a benchmark?"
+    },
+    {
+      "role": "prospect",
+      "text": "Okay, yeah, that part is genuinely a problem. Send me a 20-minute slot next week — Tuesday or Thursday afternoon. Loop in my ops lead too."
+    }
+  ],
+  "outcome": "meeting_booked"
+}

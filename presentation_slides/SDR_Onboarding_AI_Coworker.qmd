@@ -1,0 +1,299 @@
+---
+title: "SDR KT Onboarding Agent"
+subtitle: "An AI coworker for the 12-week SDR journey — with a human at every gate"
+date: 2026-06-04
+author: "MGT 449 · Milestone 04 · Group 2 — Anjali Roy & Shreya Anekar"
+title-slide-attributes:
+  data-background-gradient: "linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    css: fonts.css
+    slide-number: true
+    chalkboard: false
+    embed-resources: true
+    width: 1280
+    height: 800
+    margin: 0.04
+    center: true
+    transition: fade
+    transition-speed: fast
+    progress: true
+    incremental: false
+---
+
+## The big idea
+
+::: {.kicker}
+Onboarding an SDR today
+:::
+
+::: {.lead}
+A new Sales Development Rep takes **12 weeks** to ramp — and today that ramp is slow, inconsistent, and barely measured.
+:::
+
+```{=html}
+<div class="statgrid warn">
+  <div class="stat"><span class="num">42%</span><span class="lab">hit quota</span><span class="sub">new SDRs (RepVue, Feb 2026)</span></div>
+  <div class="stat"><span class="num">24–72h</span><span class="lab">coaching feedback lag</span><span class="sub">on cold-call reviews</span></div>
+  <div class="stat"><span class="num">3–5h</span><span class="lab">manual call review</span><span class="sub">per manager, per week</span></div>
+</div>
+```
+
+::: {.callout-card .filled}
+**Our redesign — one AI coworker for the whole journey:** draft the plan → coach the calls → certify at week 12 → debrief to improve the program. A **Manager** reviews every consequential step.
+:::
+
+## The redesigned workflow
+
+::: {.lead}
+Four phases — pre-boarding, ramp, certification, post-cert debrief — with a Manager review gate in each.
+:::
+
+```{=html}
+<div class="workflow">
+  <div class="wf-phase">
+    <div class="phase-head">1 · Pre-boarding</div>
+    <div class="wf-step hum"><span class="t">New hire signed</span></div>
+    <div class="wf-step ai"><span class="t">Onboarding plan</span><span class="s">LLM + BM25 RAG</span></div>
+    <div class="wf-step auto"><span class="t">Rank mentor</span><span class="s">5-component score</span></div>
+    <div class="wf-step auto"><span class="t">Welcome email</span><span class="s">template slot-fill</span></div>
+    <div class="wf-step rev"><span class="t">Manager gate</span><span class="s">approve / edit / reject</span></div>
+  </div>
+  <div class="wf-arrow">›</div>
+  <div class="wf-phase">
+    <div class="phase-head">2 · Ramp · Wk 1–11</div>
+    <div class="wf-step hum"><span class="t">Day 1 — hire starts</span></div>
+    <div class="wf-step both"><span class="t">AI Tutor</span><span class="s">cited · ChromaDB</span></div>
+    <div class="wf-step both"><span class="t">Cold-call sim</span><span class="s">persona + debrief</span></div>
+    <div class="wf-step both"><span class="t">Coaching notes</span><span class="s">LLM scores transcript</span></div>
+    <div class="wf-step rev"><span class="t">SDR + mgr review</span><span class="s">approve / reject</span></div>
+  </div>
+  <div class="wf-arrow">›</div>
+  <div class="wf-phase">
+    <div class="phase-head">3 · Week 12 cert</div>
+    <div class="wf-step hum"><span class="t">Certification</span></div>
+    <div class="wf-step ai"><span class="t">Gap analysis</span><span class="s">5 dims + evidence</span></div>
+    <div class="wf-step auto"><span class="t">Band recompute</span><span class="s">≥7 / 5–6 / ≤4</span></div>
+    <div class="wf-step rev"><span class="t">Trainer Pass / Fail</span><span class="s">+ required comment</span></div>
+    <div class="wf-step hum"><span class="t">Certified SDR ramps</span></div>
+  </div>
+  <div class="wf-arrow">›</div>
+  <div class="wf-phase">
+    <div class="phase-head">4 · Debrief (post-cert)</div>
+    <div class="wf-step hum"><span class="t">Debrief — 7 questions</span><span class="s">process feedback</span></div>
+    <div class="wf-step ai"><span class="t">AI debrief</span><span class="s">what worked · barriers</span></div>
+    <div class="wf-step rev"><span class="t">Manager review</span><span class="s">approve / edit / reject</span></div>
+    <div class="wf-step hum"><span class="t">Improves the program</span></div>
+  </div>
+</div>
+<div class="wf-legend">
+  <span class="key"><span class="dot hum"></span>Human</span>
+  <span class="key"><span class="dot ai"></span>AI</span>
+  <span class="key"><span class="dot rev"></span>Human review</span>
+  <span class="key"><span class="dot both"></span>Human + AI</span>
+  <span class="key"><span class="dot auto"></span>Regular automation</span>
+</div>
+```
+
+## Live demo — two SDRs, two paths
+
+::: {.kicker}
+Watch it run
+:::
+
+```{=html}
+<div class="lanes">
+  <div class="lane filled">
+    <div class="role">Priya — the clean path</div>
+    <ul>
+      <li>Entry SDR · EMEA · healthcare</li>
+      <li>AI drafts a personalized 4-week plan + cited sources</li>
+      <li>High confidence → <b>Manager approves</b> at the gate</li>
+    </ul>
+  </div>
+  <div class="lane">
+    <div class="role">Marcus — the review path</div>
+    <ul>
+      <li>Mid SDR · AMER-West · SaaS</li>
+      <li>AI flags <b>low confidence</b> (missing profile data)</li>
+      <li>Run pauses → <b>Manager reviews</b> before anything ships</li>
+    </ul>
+  </div>
+</div>
+```
+
+::: {.callout-card}
+Real input → useful output, with the **evidence visible** and a **Manager decision** at each step.
+:::
+
+## Under the hood
+
+::: {.lead}
+Every request — a hire, a question, a transcript — flows through the same pipeline.
+:::
+
+```{=html}
+<div class="arch">
+  <div class="arch-step"><span class="t">Input</span><span class="s">hire · question · transcript</span></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-step"><span class="t">Skills + automations</span><span class="s">7 LLM skills · 2 deterministic</span></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-step"><span class="t">RAG retrieval</span><span class="s">BM25 + ChromaDB · 16 docs</span></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-step accent"><span class="t">JSON envelope</span><span class="s">confidence · sources · review flag</span></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-step"><span class="t">React UI</span><span class="s">9 screens · Manager / SDR</span></div>
+  <div class="arch-arrow">→</div>
+  <div class="arch-step"><span class="t">Human gate</span><span class="s">logged to decision_log.json</span></div>
+</div>
+<div class="techstrip">
+  <span><b>7</b> LLM skills</span><span><b>2</b> automations</span><span><b>2</b> retrievers</span><span><b>2</b> MCP servers</span><span><b>9</b> UI screens</span><span><b>153</b> tests passing</span>
+</div>
+```
+
+::: {.callout-card}
+One uniform envelope between every step makes the workflow **auditable, idempotent, and safe to gate**.
+:::
+
+## Data, evidence & AI usage
+
+::: {.kicker}
+What the AI uses — and what the user can inspect
+:::
+
+```{=html}
+<div class="cards two">
+  <div class="card"><span class="h">Data it uses</span>SDR &amp; AE profiles · per-hire summaries · simulation personas · a 7-SDR records set · call transcripts pasted by the user.</div>
+  <div class="card"><span class="h">Documents (RAG)</span>A <b>16-doc</b> internal knowledge base — onboarding policy, quota ramp, objection handbook, cold-call rubric, territory + vertical playbooks, certification rubric &amp; exam — plus 7 public references.</div>
+  <div class="card green"><span class="h">Tools / functions</span><b>7</b> LLM skills · <b>2</b> deterministic automations · <b>2</b> retrievers (BM25 + ChromaDB) · <b>2</b> MCP servers.</div>
+  <div class="card"><span class="h">Evidence the user sees</span>An <b>EvidencePanel</b> with numbered cited sources + match scores · inline <code>[n]</code> citations that open the exact passage · per-dimension cards quoting the SDR's own work verbatim.</div>
+</div>
+```
+
+::: {.callout-card .amber}
+**When evidence is weak or missing:** the tutor cites a source or refuses (no bluffing) · confidence &lt; 0.60 blocks auto-complete and pauses for review · a server-side recompute overrides the AI's certification verdict if they disagree.
+:::
+
+## Human stays in control — five gates
+
+::: {.columns}
+::: {.column width="54%"}
+
+```{=html}
+<div class="gates">
+  <div class="gate"><span class="n">1</span><span><b>Pre-boarding plan</b> — Manager approves / edits / rejects / escalates</span></div>
+  <div class="gate"><span class="n">2</span><span><b>AI Tutor answer</b> — SDR approves / rejects; rejection re-enters retrieval</span></div>
+  <div class="gate"><span class="n">3</span><span><b>Coaching note</b> — Manager reviews before the SDR sees it</span></div>
+  <div class="gate"><span class="n">4</span><span><b>Certification</b> — Manager decides Pass/Fail with a required comment</span></div>
+  <div class="gate"><span class="n">5</span><span><b>Onboarding debrief</b> — Manager reviews, then shares with enablement</span></div>
+</div>
+```
+
+:::
+::: {.column width="46%"}
+
+```{=html}
+<div class="cards">
+  <div class="card amber"><span class="h">Two hard safeguards</span>Confidence &lt; 0.60 <b>blocks auto-complete</b> and pauses for review · a server-side recompute <b>overrides</b> the AI's certification verdict if they disagree.</div>
+  <div class="card"><span class="h">Every decision logged</span>Approve / edit / reject / escalate is written to <code>decision_log.json</code> with feature, action and timestamp — a full audit trail.</div>
+</div>
+```
+
+:::
+:::
+
+## The business case
+
+::: {.kicker}
+Time, cost & quality · $70/hr fully-loaded (assumption)
+:::
+
+```{=html}
+<div class="biz-top">
+  <table class="biz-table">
+    <thead><tr><th>Pre-boarding step</th><th>Today</th><th>With AI</th></tr></thead>
+    <tbody>
+      <tr><td>Build plan</td><td>90–150 min</td><td>10–20 min</td></tr>
+      <tr><td>Match mentor</td><td>20–40 min</td><td>5–10 min</td></tr>
+      <tr><td>Welcome email</td><td>15–30 min</td><td>3–8 min</td></tr>
+      <tr class="tot"><td><b>Total per hire</b></td><td><b>125–220 min</b></td><td><b>18–38 min</b></td></tr>
+      <tr class="tot"><td><b>Cost per hire</b></td><td><b>$146–257</b></td><td><b>$21–44</b></td></tr>
+    </tbody>
+  </table>
+  <div class="biz-save">
+    <span class="v">$120–215</span>
+    <span class="c">saved per hire<br>pre-boarding alone</span>
+  </div>
+</div>
+
+<div class="cards three biz-cards">
+  <div class="card"><span class="h">Coaching review</span>3–5 hr/wk → <b>under 1 hr/wk</b> of manual call review.</div>
+  <div class="card"><span class="h">Certification</span>45–75 → <b>10–15 min</b> per SDR ($40–71 saved each).</div>
+  <div class="card green"><span class="h">Quality gains</span>Consistent rubric coaching · cited answers · faster feedback · every decision logged.</div>
+</div>
+```
+
+## Testing — the kinds of checks we ran
+
+::: {.lead}
+We didn't just ship the AI Tutor — an automated **DeepEval** suite judges its answers, rerun to trust the trend over noise.
+:::
+
+```{=html}
+<div class="cards two">
+  <div class="card"><span class="h">10 cases × 4 checks</span><b>Faithfulness</b> — stays within retrieved sources? · <b>Answer relevancy</b> — answers what was asked? · <b>Citation + next-step</b> — cites <code>[n]</code> and a concrete action? · <b>SDR face-validity</b> — useful to a real SDR? Cases span everyday, edge (vague / no-source), and predicted-failure inputs.</div>
+  <div class="card green"><span class="h">What it caught — and the fix</span>It flagged real failures: over-answering vague questions, a fabricated module-ID, generic next-steps. We changed <b>one thing</b> (narrow broad questions + block ungrounded identifiers), reran 6× — the weak case went from failing to passing and fabrication disappeared.</div>
+</div>
+```
+
+::: {.callout-card .amber}
+**Honest:** one rule over-formalized a couple of answers, and the biggest remaining gap is **knowledge-base coverage** — a content fix, not a prompt fix.
+:::
+
+## Face validity — would a sales leader believe this?
+
+```{=html}
+<div class="cards two">
+  <div class="card"><span class="h">The size is believable</span>The AI only compresses what it's genuinely good at — drafting plans, retrieving answers, scoring calls. The Manager's review time is <b>added back in</b>, so the headline cuts are net savings, not magic.</div>
+  <div class="card"><span class="h">The direction is right</span>Every consequential decision still needs a human: the Manager approves plans and coaching notes, and the certification AI is <b>advisory</b> — the Manager makes the Pass/Fail call.</div>
+  <div class="card green"><span class="h">It's grounded, not guessed</span>Tutor answers cite the source passage behind each claim (Faithfulness ~8.7/10 across our runs). When the AI isn't sure, it <b>flags for review</b> instead of bluffing.</div>
+  <div class="card amber"><span class="h">Where we're honest</span>Certification is demoed on a synthetic 7-SDR cohort, and the recurring coaching saving assumes a typical weekly call volume — both clearly labeled as assumptions.</div>
+</div>
+```
+
+## What we'd improve
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.card}
+**Make the AI sharper**
+
+- Align knowledge-base docs to the test rubrics (the main remaining failure)
+- Soften the rule that over-formalized two answers
+- Capture real certification artifacts from the live cold-call sim
+:::
+:::
+::: {.column width="50%"}
+::: {.card .green}
+**Make it production-ready**
+
+- Persist state to a real database (today: in-memory)
+- Auth + role enforcement at the API layer
+- CI running tests + evals on every change
+:::
+:::
+:::
+
+## Thank you {background-gradient="linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)"}
+
+**SDR KT Onboarding Agent** — an AI coworker with a human at every gate.
+
+Anjali Roy · Shreya Anekar · Group 2
+
+::: {.callout-card}
+**Repo** · `rsm-genai-2026/mgt449-milestone04-Group-2`
+**Demo** · `uv run python workflow_server.py` + `cd ui && npm run dev`
+:::
+
+### Questions?

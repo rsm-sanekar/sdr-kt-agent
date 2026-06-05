@@ -1,0 +1,35 @@
+{
+  "sdr_id": "SDR-006",
+  "name": "Liam O'Brien",
+  "cohort": "Spring 2026",
+  "territory": "EMEA FinTech",
+  "experience_level": "senior",
+  "events": [
+    {
+      "phase": "simulation",
+      "call": 1,
+      "date": "2026-03-20",
+      "scores": {
+        "opening": 8,
+        "discovery": 8,
+        "objection_handling": 8,
+        "close": 9
+      },
+      "transcript_file": "SDR-006/call-1-transcript.md"
+    },
+    {
+      "phase": "exam",
+      "date": "2026-04-25",
+      "qa_file": "SDR-006/certification-exam.md"
+    },
+    {
+      "phase": "tutor_activity",
+      "top_topics": [
+        "value framing",
+        "Data Cloud",
+        "executive pitching"
+      ],
+      "flagged_gaps": []
+    }
+  ]
+}

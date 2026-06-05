@@ -1,0 +1,57 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/MEDDIC",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/SPIN_selling",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/BANT",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Sales_qualification",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://www.salesforce.com/sales/engagement-platform/what-is-sdr/",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://www.salesforce.com/sales/sales-development/sales-development-representative/",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://www.salesforce.com/sales/engagement-platform/cold-calling/",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://www.salesforce.com/sales/sales-development/sales-cadence/",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://www.salesforce.com/sales/objection-handling/",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://trailhead.salesforce.com/content/learn/modules/sales-cloud-basics",
+    "error": "http_404",
+    "title": null
+  },
+  {
+    "url": "https://trailhead.salesforce.com/content/learn/modules/service-cloud-basics",
+    "error": "http_404",
+    "title": null
+  }
+]

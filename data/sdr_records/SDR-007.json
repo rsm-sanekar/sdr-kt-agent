@@ -1,0 +1,42 @@
+{
+  "sdr_id": "SDR-007",
+  "name": "Yuki Tanaka",
+  "cohort": "Spring 2026",
+  "territory": "AMER Manufacturing",
+  "experience_level": "mid",
+  "events": [
+    {
+      "phase": "simulation",
+      "call": 1,
+      "date": "2026-03-21",
+      "scores": {
+        "opening": 8,
+        "discovery": 8,
+        "objection_handling": 7,
+        "close": 8
+      },
+      "transcript_file": "SDR-007/call-1-transcript.md"
+    },
+    {
+      "phase": "exam",
+      "date": "2026-04-26",
+      "qa_file": "SDR-007/certification-exam.md"
+    },
+    {
+      "phase": "coaching_note",
+      "call": 1,
+      "date": "2026-03-23",
+      "score": 7.8,
+      "note_file": "SDR-007/coaching-note-1.md"
+    },
+    {
+      "phase": "tutor_activity",
+      "top_topics": [
+        "Data Cloud",
+        "manufacturing ERP integration",
+        "multi-stakeholder selling"
+      ],
+      "flagged_gaps": []
+    }
+  ]
+}

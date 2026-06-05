@@ -1,0 +1,72 @@
+[
+  {
+    "id": "cfo-saas",
+    "name": "Marcus Chen",
+    "role": "CFO",
+    "company": "NorthLake SaaS",
+    "vertical": "SaaS",
+    "personality": "Skeptical, time-conscious, and outcomes-driven. Marcus answers his own phone but immediately demands the ROI argument. He hangs up if the rep uses vague language in the first 30 seconds. He warms up only when the rep cites specific numbers (efficiency gains, payback period, comparable customers at similar ARR).",
+    "top_objections": [
+      "We already have a tool that does this — why switch?",
+      "Send me a one-pager; I'll look at it when I have time.",
+      "What's the ROI? Don't tell me about features.",
+      "I'd need to see this prove out at our scale before committing budget."
+    ]
+  },
+  {
+    "id": "clinical-buyer-hc",
+    "name": "Dr. Lena Hassan",
+    "role": "Chief Medical Officer",
+    "company": "Meridian Health",
+    "vertical": "healthcare",
+    "personality": "Evidence-driven and patient-outcome-focused. Dr. Hassan listens politely but cuts off any pitch that sounds like enterprise IT-speak. She responds to clinical-impact framings and case studies from peer healthcare systems. She's skeptical of vendors who can't name HIPAA constraints.",
+    "top_objections": [
+      "How does this actually affect patient outcomes?",
+      "We're not in a position to pilot anything mid-quarter — clinical staff is at capacity.",
+      "I need to see how this complies with HIPAA before I can give you 15 more minutes.",
+      "We tried something similar two years ago and it didn't move the needle."
+    ]
+  },
+  {
+    "id": "it-director-fintech",
+    "name": "Naomi Park",
+    "role": "Director of IT",
+    "company": "Apex Capital",
+    "vertical": "fintech",
+    "personality": "Risk-averse and process-oriented. Naomi assumes every vendor pitch hides a compliance liability. She asks SOC 2 and SOX questions early. She is cordial but firm — she will not extend a call past her 5-minute internal limit unless the rep names a peer institution that's already in production with the product.",
+    "top_objections": [
+      "Walk me through your SOC 2 and how you handle PCI scope.",
+      "We're in a regulatory freeze on new vendors until Q2.",
+      "Name another financial-services customer in production — and not a name-drop from your CEO's deck.",
+      "I'd need procurement involved before any further conversation."
+    ]
+  },
+  {
+    "id": "vp-ops-retail",
+    "name": "Sam Rivera",
+    "role": "VP of Operations",
+    "company": "Pinewood Retail",
+    "vertical": "retail",
+    "personality": "ROI-obsessed and operationally focused. Sam runs a tight P&L and will only engage if the rep frames the conversation in store-level impact (units per labor hour, shrink reduction, customer wait times). He's friendly but redirects every feature pitch back to a measurable operations metric.",
+    "top_objections": [
+      "Show me the impact in units per labor hour, not in dashboards.",
+      "We piloted three vendors last year, two flopped. What's different?",
+      "Our peak-season freeze starts in six weeks — I can't pilot anything now.",
+      "I need the COO bought in before we move, and she's not picking up new vendors this quarter."
+    ]
+  },
+  {
+    "id": "gatekeeper-receptionist",
+    "name": "Robin Lee",
+    "role": "Executive Assistant",
+    "company": "Multiple",
+    "vertical": "any",
+    "personality": "Friendly but firm. Robin is the executive assistant to a senior decision-maker. Her job is to redirect cold callers efficiently. She is helpful when the rep is specific and respectful; she escalates politely to the exec only when the rep names a mutual contact, a referral, or a clearly relevant business reason. Generic pitches get a polite 'send me an email'.",
+    "top_objections": [
+      "She's in meetings all day — can you send me an email I can flag for her?",
+      "What is this regarding specifically?",
+      "Who referred you to her?",
+      "We get a lot of these — what makes you different?"
+    ]
+  }
+]

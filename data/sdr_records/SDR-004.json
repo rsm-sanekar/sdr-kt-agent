@@ -1,0 +1,37 @@
+{
+  "sdr_id": "SDR-004",
+  "name": "Diego Rodriguez",
+  "cohort": "Spring 2026",
+  "territory": "EMEA Retail",
+  "experience_level": "entry",
+  "events": [
+    {
+      "phase": "simulation",
+      "call": 1,
+      "date": "2026-03-17",
+      "scores": {
+        "opening": 8,
+        "discovery": 7,
+        "objection_handling": 6,
+        "close": 7
+      },
+      "transcript_file": "SDR-004/call-1-transcript.md"
+    },
+    {
+      "phase": "exam",
+      "date": "2026-04-23",
+      "qa_file": "SDR-004/certification-exam.md"
+    },
+    {
+      "phase": "tutor_activity",
+      "top_topics": [
+        "MEDDIC qualification",
+        "economic buyer",
+        "decision process"
+      ],
+      "flagged_gaps": [
+        "Metrics quantification"
+      ]
+    }
+  ]
+}

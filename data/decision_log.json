@@ -1,0 +1,156 @@
+[
+  {
+    "timestamp": "2026-05-25T02:59:35.848433+00:00",
+    "feature": "tutor",
+    "action": "approve",
+    "context": {
+      "question": "How do I handle a price objection on a cold call?",
+      "qa_id": "approved_qa::a981bf443ef6",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-25T02:59:36.496601+00:00",
+    "feature": "tutor",
+    "action": "edit",
+    "context": {
+      "question": "What is the SDR ramp schedule?",
+      "qa_id": "approved_qa::f0a893eef3ad",
+      "edited": true
+    }
+  },
+  {
+    "timestamp": "2026-05-25T02:59:37.056885+00:00",
+    "feature": "tutor",
+    "action": "reject",
+    "context": {
+      "question": "What is the airspeed velocity of an unladen swallow?",
+      "reason": "off-topic, no SDR relevance",
+      "gap_index": 2
+    }
+  },
+  {
+    "timestamp": "2026-05-25T02:59:37.938768+00:00",
+    "feature": "chain",
+    "action": "escalate",
+    "context": {
+      "run_id": "wf-e073d67e714d",
+      "hire_id": "HIRE-005",
+      "at_step": "rank-trail-guides",
+      "note": "weak match \u2014 kicking to senior review",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-25T03:54:06.913402+00:00",
+    "feature": "chain",
+    "action": "approve",
+    "context": {
+      "run_id": "wf-d13f8f4b2967",
+      "hire_id": "HIRE-002",
+      "at_step": "rank-trail-guides",
+      "note": "",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T00:09:33.332432+00:00",
+    "feature": "tutor",
+    "action": "approve",
+    "context": {
+      "question": "How do I handle the 'send me an email' objection?",
+      "qa_id": "approved_qa::764d20fe7ac4",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T00:11:52.010676+00:00",
+    "feature": "simulation",
+    "action": "approve",
+    "context": {
+      "session_id": "sim-1ab9dbced910",
+      "persona_id": "cfo-saas",
+      "weighted_total": 1.0,
+      "n_turns": 4
+    }
+  },
+  {
+    "timestamp": "2026-05-28T00:22:30.383868+00:00",
+    "feature": "simulation",
+    "action": "approve",
+    "context": {
+      "session_id": "sim-d6e8c201e370",
+      "persona_id": "cfo-saas",
+      "weighted_total": 1.0,
+      "n_turns": 4
+    }
+  },
+  {
+    "timestamp": "2026-05-28T05:31:05.630308+00:00",
+    "feature": "chain",
+    "action": "escalate",
+    "context": {
+      "run_id": "wf-cb0bf3b47698",
+      "hire_id": "HIRE-002",
+      "at_step": "rank-trail-guides",
+      "note": "Not good call",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T05:32:15.201987+00:00",
+    "feature": "chain",
+    "action": "approve",
+    "context": {
+      "run_id": "wf-ef4f3ad05603",
+      "hire_id": "HIRE-002",
+      "at_step": "rank-trail-guides",
+      "note": "",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T05:34:12.305223+00:00",
+    "feature": "chain",
+    "action": "approve",
+    "context": {
+      "run_id": "wf-cd221649a7f9",
+      "hire_id": "HIRE-003",
+      "at_step": "rank-trail-guides",
+      "note": "",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T05:36:42.670176+00:00",
+    "feature": "coaching",
+    "action": "approve",
+    "context": {
+      "session_id": "co-9bb73733f22f",
+      "hire_id": "HIRE-001",
+      "note": "",
+      "edited": false
+    }
+  },
+  {
+    "timestamp": "2026-05-28T05:38:28.465855+00:00",
+    "feature": "simulation",
+    "action": "approve",
+    "context": {
+      "session_id": "sim-eede8dd2cfd0",
+      "persona_id": "cfo-saas",
+      "weighted_total": 1.0,
+      "n_turns": 4
+    }
+  },
+  {
+    "timestamp": "2026-06-03T04:27:15.767013+00:00",
+    "feature": "certification",
+    "action": "approve",
+    "context": {
+      "sdr_id": "SDR-001",
+      "decision": "pass",
+      "comment": "Approved despite borderline objection handling \u2014 trajectory across the two simulation calls is improving."
+    }
+  }
+]

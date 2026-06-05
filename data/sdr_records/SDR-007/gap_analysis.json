@@ -1,0 +1,93 @@
+{
+  "status": "ok",
+  "next_action": "done",
+  "confidence": 0.87,
+  "review_required": false,
+  "artifact_refs": [
+    "01_certification_gap_analysis.md"
+  ],
+  "outputs": {
+    "sdr_id": "SDR-007",
+    "sdr_name": "Yuki Tanaka",
+    "cohort": "Spring 2026",
+    "territory": "AMER Manufacturing",
+    "overall_recommendation": "PASS",
+    "llm_overall_recommendation": "PASS",
+    "overall_rationale": "Yuki's product fluency is exceptional \u2014 explicitly distinguishes when Data Cloud is the right entry point vs Sales Cloud and resists the temptation to pitch Service Cloud when it's not relevant. Solid across the other dimensions. Ready for live calls.",
+    "weakest_dimension": "objection_handling",
+    "dimension_findings": {
+      "product_knowledge_accuracy": {
+        "score": 9,
+        "verdict": "pass",
+        "evidence_quote": "That's a Data Cloud problem more than a Sales Cloud problem \u2014 you'd want a single source of truth that pulls plant-level inventory into the rep's quote workflow. Service Cloud isn't relevant here unless you've got a post-sale case-routing problem too.",
+        "rationale": "Knows when each cloud is the right tool and when it isn't; resists feature-stacking.",
+        "gap_to_close": "No real gap.",
+        "coaching_action": "Continue trajectory; consider mentoring on product positioning.",
+        "label": "Product knowledge accuracy"
+      },
+      "objection_handling": {
+        "score": 7,
+        "verdict": "pass",
+        "evidence_quote": "Acknowledged the concern and asked the real-concern question.",
+        "rationale": "Pattern applied cleanly; could stretch on more advanced objection variants.",
+        "gap_to_close": "Minor \u2014 was a smooth conversation without major objection pressure.",
+        "coaching_action": "Roleplay against advanced objections (CFO-level scrutiny, multi-vendor comparison).",
+        "label": "Objection handling (Defuse, Discover, Deliver)"
+      },
+      "meddic_application": {
+        "score": 8,
+        "verdict": "pass",
+        "evidence_quote": "What does the decision process look like for something at this scope \u2014 IT, procurement, line of business?",
+        "rationale": "Maps Decision Process explicitly and brings the right roles into the next conversation.",
+        "gap_to_close": "Minor \u2014 could quantify Metrics more aggressively.",
+        "coaching_action": "One coaching session on pain quantification.",
+        "label": "MEDDIC framework application"
+      },
+      "salesforce_value_messaging": {
+        "score": 8,
+        "verdict": "pass",
+        "evidence_quote": "Sold the outcome (consolidated quote accuracy) rather than features.",
+        "rationale": "Outcome-led; names the architecture as a path to the outcome, not as the value itself.",
+        "gap_to_close": "Minor \u2014 could quantify time saved more precisely.",
+        "coaching_action": "Build a Manufacturing-specific value pattern with hours-saved numbers.",
+        "label": "Salesforce value messaging"
+      },
+      "discovery_and_questioning": {
+        "score": 8,
+        "verdict": "pass",
+        "evidence_quote": "What hurts most \u2014 quote accuracy across plants, or service handoffs when an order arrives?",
+        "rationale": "Forced-choice question that surfaces the real pain quickly without being yes/no.",
+        "gap_to_close": "Minor \u2014 five questions would have been even stronger.",
+        "coaching_action": "Continue trajectory.",
+        "label": "Discovery and questioning"
+      }
+    },
+    "review_reasons": [],
+    "retrieved_docs": [
+      "certification_rubric.md",
+      "certification_questions.md"
+    ],
+    "sources": [
+      {
+        "doc_name": "certification_rubric.md",
+        "passage": "Passing bar: an SDR should score 7 or above on every dimension. A score of 5-6 on any one dimension is a borderline result and requires trainer review. A score of 4 or below on any dimension is a fail on that dimension regardless of the others.",
+        "score": 0.92,
+        "weak": false
+      },
+      {
+        "doc_name": "certification_rubric.md",
+        "passage": "MEDDIC framework application \u2014 Common gap: SDRs conflate a helpful contact with the economic buyer, and book meetings that the AE later rejects. Coaching action: MEDDIC qualification drills.",
+        "score": 0.88,
+        "weak": false
+      },
+      {
+        "doc_name": "certification_questions.md",
+        "passage": "Q3 \u2014 MEDDIC framework application. Identify which elements are captured and which are missing. Would you call this a qualified opportunity ready for an AE handoff, or not?",
+        "score": 0.81,
+        "weak": false
+      }
+    ],
+    "generated_at": "2026-06-03T04:29:11.756141+00:00"
+  },
+  "error": null
+}

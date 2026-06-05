@@ -1,0 +1,213 @@
+/*-- scss:defaults --*/
+
+// === Palette ==================================================================
+$brand:        #2563EB;   // primary blue
+$brand-dark:   #1E3A8A;
+$brand-light:  #EEF3FF;
+
+$c-human:  #10B981;   // green  — human task (M01 system, used on diagram)
+$c-ai:     #EF4444;   // red    — AI task
+$c-review: #A855F7;   // purple — human review
+$c-both:   #F97316;   // orange — human + AI
+$c-auto:   #3B82F6;   // blue   — regular automation
+$c-amber:  #F59E0B;
+
+$ink:        #0F172A;   // near-black slate
+$ink-soft:   #334155;
+$ink-muted:  #64748B;
+$paper:      #FFFFFF;
+$paper-soft: #F8FAFC;
+$line:       #E2E8F0;
+
+// === Reveal variable overrides ================================================
+$body-bg:    $paper;
+$body-color: $ink-soft;
+$link-color: $brand;
+$selection-bg: rgba($brand, 0.22);
+$presentation-font-size-root: 30px;
+$presentation-heading-color:  $ink;
+$presentation-heading-font-weight: 700;
+
+
+/*-- scss:rules --*/
+
+// Fonts (Inter + Space Grotesk) are embedded as base64 @font-face in fonts.css,
+// referenced from the qmd frontmatter (reliable offline + in the exported PDF).
+
+$sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$display: "Space Grotesk", $sans;
+
+// === Base =====================================================================
+.reveal { font-family: $sans; font-weight: 400; color: $ink-soft; letter-spacing: -0.01em; }
+
+// reveal centers content vertically (center: true); we just set horizontal padding
+.reveal .slides section { text-align: left; padding: 0 2.4rem; box-sizing: border-box; }
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: $display;
+  color: $ink;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-transform: none;
+}
+.reveal h2 {
+  font-size: 2.15rem;
+  font-weight: 700;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.28rem;
+  border-bottom: 3px solid $brand;
+  display: inline-block;
+}
+.reveal strong { color: $ink; font-weight: 700; }
+.reveal em { color: $brand-dark; font-style: italic; }
+.reveal ul, .reveal ol { margin: 0; padding-left: 1.1em; }
+.reveal li { margin: 0.4em 0; line-height: 1.4; }
+.reveal li::marker { color: $brand; }
+.reveal code { font-family: "Space Grotesk", monospace; background: $brand-light; color: $brand-dark; padding: 0.05em 0.4em; border-radius: 5px; font-size: 0.88em; }
+
+// === Columns ==================================================================
+.reveal .columns { display: flex; gap: 1.6rem; align-items: stretch; }
+.reveal .columns > .column { flex: 1; min-width: 0; }
+
+// === Kicker (eyebrow) =========================================================
+.reveal .kicker {
+  font-family: $display;
+  display: inline-block;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: $brand; margin-bottom: 0.7rem;
+}
+
+// === Lead subtitle ============================================================
+.reveal .lead { font-size: 1.15rem; color: $ink-muted; margin: -0.4rem 0 1.2rem; max-width: 70ch; }
+
+// === Callout cards ============================================================
+.callout-card {
+  background: $paper-soft; border: 1px solid $line; border-left: 5px solid $brand;
+  padding: 0.85rem 1.1rem; margin: 0.5rem 0; border-radius: 0 12px 12px 0; font-size: 1rem;
+}
+.callout-card.green { border-left-color: $c-human; background: rgba($c-human,0.06); }
+.callout-card.amber { border-left-color: $c-amber; background: rgba($c-amber,0.07); }
+.callout-card.filled { background: $brand; border: none; color: #fff; }
+.callout-card.filled strong { color: #fff; }
+.callout-card.filled.green { background: $c-human; }
+
+// === Big-number stat grid =====================================================
+.statgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 2.4rem; margin: 1rem auto; max-width: 94%; }
+.statgrid.cols2 { grid-template-columns: repeat(2, 1fr); }
+.stat { text-align: center; }
+.stat .num { font-family: $display; display: block; font-size: 3.4rem; font-weight: 700; line-height: 1; color: $brand; letter-spacing: -0.03em; }
+.statgrid.warn .num { color: $c-ai; }
+.stat .lab { display: block; margin-top: 0.45rem; font-size: 1.12rem; font-weight: 600; color: $ink; line-height: 1.25; }
+.stat .sub { display: block; margin-top: 0.2rem; font-size: 0.92rem; color: $ink-muted; line-height: 1.3; }
+
+// === Feature / anchor cards ===================================================
+.cards { display: grid; gap: 1rem; margin-top: 0.4rem; }
+.cards.two { grid-template-columns: repeat(2, 1fr); }
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: $paper-soft; border: 1px solid $line; border-top: 4px solid $brand;
+  border-radius: 12px; padding: 0.9rem 1.05rem; font-size: 1rem; line-height: 1.4;
+}
+.card .h { font-family: $display; font-weight: 600; color: $ink; font-size: 1.08rem; display: block; margin-bottom: 0.25rem; }
+.card.green { border-top-color: $c-human; }
+.card.amber { border-top-color: $c-amber; }
+
+// === Architecture flow (Under the hood) =======================================
+.arch { display: flex; align-items: stretch; justify-content: center; gap: 0.35rem; flex-wrap: wrap; margin: 0.6rem 0 1rem; }
+.arch-step {
+  flex: 1 1 0; min-width: 0;
+  background: $paper-soft; border: 1px solid $line; border-radius: 12px;
+  padding: 0.75rem 0.6rem; text-align: center;
+}
+.arch-step .t { font-family: $display; font-weight: 600; color: $ink; font-size: 0.98rem; display: block; }
+.arch-step .s { font-size: 0.8rem; color: $ink-muted; display: block; margin-top: 0.2rem; line-height: 1.25; }
+.arch-step.accent { background: $brand; border-color: $brand; }
+.arch-step.accent .t { color: #fff; } .arch-step.accent .s { color: rgba(#fff,0.85); }
+.arch-arrow { align-self: center; color: $brand; font-weight: 700; font-size: 1.3rem; }
+.techstrip { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: center; margin-top: 0.4rem; font-size: 0.95rem; color: $ink-soft; }
+.techstrip b { font-family: $display; color: $brand-dark; }
+
+// === Numbered gate list =======================================================
+.gates { display: flex; flex-direction: column; gap: 0.5rem; }
+.gate { display: grid; grid-template-columns: 1.9rem 1fr; gap: 0.7rem; align-items: baseline;
+        background: $paper-soft; border: 1px solid $line; border-left: 4px solid $c-review;
+        border-radius: 10px; padding: 0.55rem 0.8rem; font-size: 0.98rem; line-height: 1.35; }
+.gate .n { font-family: $display; font-size: 1.15rem; font-weight: 700; color: $c-review; }
+.gate b { color: $ink; }
+
+// === Role lanes (demo) ========================================================
+.lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 0.4rem; }
+.lane { border: 1px solid $line; border-radius: 14px; padding: 1rem 1.2rem; background: $paper-soft; }
+.lane.filled { background: $brand; border: none; color: #fff; }
+.lane .role { font-family: $display; font-weight: 600; font-size: 1.2rem; margin-bottom: 0.55rem; color: $brand-dark; }
+.lane.filled .role { color: #fff; }
+.lane ul { padding-left: 1.15em; } .lane li { font-size: 1.02rem; margin: 0.32em 0; }
+.lane.filled li::marker { color: rgba(#fff,0.85); }
+
+// === Tables ===================================================================
+.reveal table { border-collapse: collapse; width: 100%; font-size: 0.92rem; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba($ink,0.06); }
+.reveal table th { font-family: $display; background: $brand; color: #fff; font-weight: 600; padding: 0.6rem 0.85rem; text-align: left; }
+.reveal table td { padding: 0.55rem 0.85rem; border-top: 1px solid $line; }
+.reveal table tr:nth-child(even) td { background: $paper-soft; }
+
+// === Business-case slide — balanced table + savings, then 3 equal cards =======
+.biz-top { display: flex; gap: 1.6rem; align-items: center; margin: 0.4rem 0 1.1rem; }
+.biz-top .biz-table { flex: 1.7; width: auto; }
+.biz-save {
+  flex: 1; text-align: center;
+  background: rgba($c-human, 0.08);
+  border: 1px solid rgba($c-human, 0.35);
+  border-radius: 16px; padding: 1.5rem 1rem;
+}
+.biz-save .v { font-family: $display; display: block; font-size: 3rem; font-weight: 700; color: $c-human; letter-spacing: -0.03em; line-height: 1; }
+.biz-save .c { display: block; margin-top: 0.55rem; font-size: 1rem; color: $ink-muted; line-height: 1.35; }
+.biz-table tr.tot td { background: $paper-soft; }
+.biz-cards .card { font-size: 1rem; }
+
+// === Big inline figure (e.g. $ saved) =========================================
+.bignum { font-family: $display; text-align: center; margin: 1rem 0 0.3rem; }
+.bignum .v { font-size: 3.2rem; font-weight: 700; color: $c-human; letter-spacing: -0.03em; line-height: 1; }
+.bignum .c { display: block; font-size: 1.05rem; color: $ink-muted; margin-top: 0.3rem; font-family: $sans; }
+
+// === Slide number / progress ==================================================
+.reveal .slide-number { background: rgba($brand,0.85); color: #fff; border-radius: 5px; padding: 0.15em 0.5em; font-size: 0.6em; }
+.reveal .progress { color: $brand; height: 4px; }
+
+// === Title + gradient slides ==================================================
+#title-slide .title { font-family: $display; font-size: 3.3rem; font-weight: 700; color: #fff; line-height: 1.04; letter-spacing: -0.03em; }
+#title-slide .subtitle { font-size: 1.3rem; color: rgba(#fff,0.92); font-weight: 400; margin-top: 0.6rem; }
+.reveal #title-slide .author, .reveal #title-slide .date,
+.reveal #title-slide .quarto-title-authors, .reveal #title-slide .quarto-title-author-name,
+.reveal #title-slide p.author { color: #fff !important; opacity: 0.9; font-size: 1.05rem; font-weight: 500; }
+.reveal section[data-background-gradient] h1, .reveal section[data-background-gradient] h2,
+.reveal section[data-background-gradient] h3, .reveal section[data-background-gradient] p,
+.reveal section[data-background-gradient] strong { color: #fff !important; }
+.reveal section[data-background-gradient] h2 { border-bottom-color: rgba(#fff,0.6); }
+.reveal section[data-background-gradient] .callout-card { background: rgba(#fff,0.14); border: none; }
+
+// === Transitions: ONE subtle fade-up (heading, then body) — no heavy cascade ===
+@keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.reveal section.present > * { animation: riseIn 0.42s ease both; }
+.reveal section.present > h2 { animation-delay: 0s; }
+.reveal section.present > *:not(h2) { animation-delay: 0.12s; }
+
+// ==============================================================================
+//  WORKFLOW DIAGRAM — kept verbatim (the user confirmed this is perfect)
+// ==============================================================================
+.workflow { display: flex; align-items: stretch; justify-content: center; gap: 0.4em; margin: 0.2em 0 0.7em 0; }
+.wf-phase { flex: 1; background: $paper-soft; border: 1px solid $line; border-radius: 12px; padding: 0.5em 0.5em 0.6em; display: flex; flex-direction: column; gap: 0.4em; }
+.wf-phase .phase-head { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: $ink-muted; text-align: center; padding-bottom: 0.15em; }
+.wf-step { border-radius: 9px; padding: 0.45em 0.55em; color: #fff; box-shadow: 0 3px 8px rgba($ink, 0.12); }
+.wf-step .t { display: block; font-size: 0.92rem; font-weight: 700; line-height: 1.18; }
+.wf-step .s { display: block; font-size: 0.76rem; opacity: 0.95; margin-top: 0.12em; line-height: 1.2; }
+.wf-step.hum  { background: $c-human; }
+.wf-step.ai   { background: $c-ai; }
+.wf-step.rev  { background: $c-review; }
+.wf-step.both { background: $c-both; }
+.wf-step.auto { background: $c-auto; }
+.wf-arrow { align-self: center; font-size: 1.6rem; font-weight: 900; color: $brand; flex: 0 0 auto; }
+.wf-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6em 1.2em; font-size: 0.95rem; font-weight: 600; color: $ink-soft; margin-top: 0.5em; }
+.wf-legend .key { display: inline-flex; align-items: center; gap: 0.4em; }
+.wf-legend .dot { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.dot.hum { background: $c-human; } .dot.ai { background: $c-ai; } .dot.rev { background: $c-review; } .dot.both { background: $c-both; } .dot.auto { background: $c-auto; }
