@@ -29,6 +29,12 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.5",
 ]
+# Local audio transcription for Coaching Notes. mlx-whisper is Apple-Silicon
+# only, so it lives in an opt-in group (install with `uv sync --group audio`)
+# and is imported lazily — non-Mac environments and CI stay unaffected.
+audio = [
+    "mlx-whisper>=0.4",
+]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

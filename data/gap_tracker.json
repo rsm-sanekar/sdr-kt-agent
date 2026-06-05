@@ -41,5 +41,13 @@
     "question": "How do I handle the 'send me an email' objection?",
     "confidence_score": 0.3465,
     "timestamp": "2026-05-28T00:08:43.879295+00:00"
+  },
+  {
+    "type": "low_confidence_query",
+    "question": "How do I handle the 'send me an email' objection?",
+    "confidence_score": 0.3685,
+    "answer": "When a prospect says 'send me an email,' use the Acknowledge \u2014 Reframe \u2014 Redirect (ARR) pattern [2]. First, Acknowledge the request so the prospect feels heard [2]. Then Reframe by asking one qualifying question to find out what they actually care about \u2014 this helps you write a relevant email instead of a generic one [2]. Finally, Redirect by confirming you'll follow up and use that moment to book a specific time to connect [2]. This keeps the conversation alive rather than letting it die in their inbox. Avoid jumping straight into a scripted rebuttal \u2014 that reads as defensive and skips the real concern underneath [1]. The goal is a short, natural exchange: 'Absolutely, happy to send something over \u2014 quick question so I make it useful: what's your biggest priority around [topic] right now?' Then lock in a follow-up time before you hang up [2].",
+    "next_step": "Within the next hour, open Slack and message your Trail Guide in #sdr-help with: 'Can we do a 10-minute roleplay on the Send me an email objection using the ARR pattern from objection_handling_top10.md? I want to practice the Reframe step specifically.'",
+    "timestamp": "2026-06-05T19:19:03.568481+00:00"
   }
 ]

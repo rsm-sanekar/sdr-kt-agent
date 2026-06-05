@@ -14,6 +14,12 @@ __pycache__
 .pytest_cache/
 .ruff_cache/
 
+# Runtime session stores (debrief + coaching) — persisted across restarts but
+# not source. The demo cohort lives in data/sdr_records/, not here.
+data/offboarding_sessions.json
+data/coaching_sessions.json
+data/working/
+
 # Secrets
 .env
 
@@ -22,6 +28,8 @@ __pycache__
 *.html
 # but DO track the orchestrator's source HTML template (rendered at request time)
 !scripts/orchestrator_ui.html
+# and the Vite entry point (source, not a rendered artifact)
+!ui/index.html
 
 # Others
 Makefile

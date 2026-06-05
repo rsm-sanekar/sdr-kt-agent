@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react"
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom"
 import { useRole } from "../lib/roleContext"
+import { listOffboardingSessions } from "../lib/api"
 
 const NAV_BY_ROLE = {
   manager: [
@@ -66,7 +68,30 @@ function RoleToggle({ role, setRole }) {
 
 export default function Navbar() {
   const { role, setRole } = useRole()
+  const location = useLocation()
   const items = NAV_BY_ROLE[role] || []
+  const [pendingDebriefs, setPendingDebriefs] = useState(0)
+
+  useEffect(() => {
+    if (role !== "manager") return
+    let cancelled = false
+    listOffboardingSessions()
+      .then((rows) => {
+        if (cancelled) return
+        const n = (Array.isArray(rows) ? rows : []).filter(
+          (r) => r.status === "paused" || r.status === "pending",
+        ).length
+        setPendingDebriefs(n)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [role, location.pathname])
+
+  const badgeFor = (to) =>
+    to === "/offboarding-reviews" && pendingDebriefs > 0 ? pendingDebriefs : null
+
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -83,11 +108,21 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-1">
-          {items.map((it) => (
-            <NavLink key={it.to} to={it.to} className={pillClass}>
-              {it.label}
-            </NavLink>
-          ))}
+          {items.map((it) => {
+            const badge = badgeFor(it.to)
+            return (
+              <NavLink key={it.to} to={it.to} className={pillClass}>
+                <span className="inline-flex items-center gap-1.5">
+                  {it.label}
+                  {badge != null && (
+                    <span className="bg-amber-500 text-white text-[10px] font-bold rounded-full min-w-[1.1rem] h-[1.1rem] px-1 inline-flex items-center justify-center">
+                      {badge}
+                    </span>
+                  )}
+                </span>
+              </NavLink>
+            )
+          })}
         </div>
 
         <RoleToggle role={role} setRole={setRole} />

@@ -3,7 +3,7 @@ title: Fintech vertical selling playbook
 category: Vertical playbook
 codename: Project Ledger
 last_reviewed: 2024-09-22
-owner: Industry Marketing — Hiroshi Tanaka (Financial Services GTM Lead)
+owner: Industry Marketing — Kenji Watanabe (Financial Services GTM Lead)
 audience: SDRs and AEs working fintech, banking, and capital-markets accounts
 ---
 
@@ -39,4 +39,4 @@ Fintech buyers frequently flag the same four regimes. Approved SDR-level acknowl
 - **Dodd-Frank / SR 11-7 (model risk):** AI features can be configured for model-governance documentation.
 - **MiFID II (EU):** Call recording and record-retention integrations available.
 
-Anything beyond acknowledgement — particularly opinions on whether the prospect *is* covered by a given regime — must be routed to **Hiroshi Tanaka** or the FSC compliance specialist.
+Anything beyond acknowledgement — particularly opinions on whether the prospect *is* covered by a given regime — must be routed to **Kenji Watanabe** or the FSC compliance specialist.

@@ -140,7 +140,7 @@ def test_happy_path_with_summary(tmp_path, capsys, monkeypatch):
     assert isinstance(sources[0]["weak"], bool)
 
     plan = (tmp_path / "wf-h" / "01_onboarding_plan.md").read_text()
-    assert "Priya Patel" in plan
+    assert "Priya Sharma" in plan
     assert "TRAIL-CRM-101" in plan
 
 

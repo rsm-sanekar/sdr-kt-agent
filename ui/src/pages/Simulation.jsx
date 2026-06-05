@@ -7,7 +7,6 @@ import {
   Send,
   PhoneOff,
   RefreshCw,
-  Sparkles,
   Check,
   ArrowRight,
   MessageCircle,
@@ -454,8 +453,7 @@ export default function Simulation() {
 
       {phase === "debriefing" && (
         <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg p-12 flex flex-col items-center justify-center gap-3 min-h-[20rem]">
-          <Sparkles className="h-6 w-6 text-blue-500" />
-          <Loader2 className="h-6 w-6 text-blue-500 animate-spin" />
+          <Loader2 className="h-7 w-7 text-blue-500 animate-spin" />
           <div className="text-sm font-semibold text-gray-600">Generating debrief…</div>
           <div className="text-xs text-gray-400 text-center max-w-md">
             Replaying the conversation and scoring against the four-dimension

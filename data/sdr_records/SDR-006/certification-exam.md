@@ -38,11 +38,11 @@ Missing:
 
 ### Q4 — Salesforce value messaging
 
-For a VP of Sales at a 500-person SaaS company, I would lead with their outcome, not features.
+For a VP of Sales at an EMEA banking or capital-markets firm, I anchor on a number their CFO already watches.
 
-"Hi Liam, three SaaS VPs of Sales I worked with last quarter were under pressure to grow pipeline by 20-30% without adding headcount. The unlock for all three was using Sales Cloud's revenue intelligence layer to flag stalled deals 2-3 weeks earlier than their reps were spotting them. One team recovered roughly $4M in pipeline they would have otherwise lost to neglect, with the same team size. The win wasn't a feature — it was a forecast everyone trusted enough to act on. If that pattern resonates with your situation, I'd love 30 minutes to understand whether the same lever applies to your team."
+"Two capital-markets teams I worked with this year were leaking forecast accuracy because deal data lived in three systems. Once Sales Cloud became the single forecast everyone trusted, their commit-to-close slippage dropped from roughly 30% to under 15% in two quarters — same team, far fewer surprises in the board pack. If forecast trust is a live issue for you, that's the conversation I'd want to have."
 
-I quantify (20-30%, 2-3 weeks, $4M). I avoid claiming things I cannot back. I tie the investment to a business outcome (pipeline recovered with the same headcount). I do not list Sales Cloud features.
+I lead with a metric leadership tracks (forecast accuracy), quantify the change, and avoid a feature list.
 
 ### Q5 — Discovery and questioning
 

@@ -85,7 +85,7 @@ def test_happy_path(tmp_path, capsys, monkeypatch):
     assert env["confidence"] == 0.92
     assert env["review_required"] is False
     assert env["outputs"]["persona_id"] == "cfo-saas"
-    assert env["outputs"]["persona_name"] == "Marcus Chen"
+    assert env["outputs"]["persona_name"] == "Gregory Hale"
     assert "two minutes" in env["outputs"]["prospect_response"].lower()
     assert env["outputs"]["n_messages_in"] == 1
     # Simulation skill does not write artifacts.

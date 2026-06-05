@@ -10,7 +10,8 @@ import {
   RefreshCw,
 } from "lucide-react"
 import { OFFBOARDING_QUESTIONS } from "../lib/offboardingQuestions"
-import { synthesizeOffboarding, getHires } from "../lib/api"
+import { synthesizeOffboarding, getHires, listOffboardingSessions } from "../lib/api"
+import { formatDate } from "../lib/format"
 
 function ProgressBar({ current, total }) {
   return (
@@ -43,6 +44,7 @@ export default function Offboarding() {
 
   const [submitted, setSubmitted] = useState(null) // {session_id, rep_name}
   const [error, setError] = useState(null)
+  const [existingSessions, setExistingSessions] = useState([])
 
   useEffect(() => {
     let cancelled = false
@@ -57,6 +59,12 @@ export default function Offboarding() {
       .finally(() => {
         if (!cancelled) setHiresLoading(false)
       })
+    // Load existing debriefs so we can warn an SDR who already submitted.
+    listOffboardingSessions()
+      .then((rows) => {
+        if (!cancelled) setExistingSessions(Array.isArray(rows) ? rows : [])
+      })
+      .catch(() => {})
     return () => {
       cancelled = true
     }
@@ -66,6 +74,15 @@ export default function Offboarding() {
     () => hires.find((h) => h.hire_id === hireId) || null,
     [hires, hireId],
   )
+
+  const existingForHire = useMemo(() => {
+    if (!selectedHire) return null
+    return (
+      existingSessions.find(
+        (r) => r.hire_id === selectedHire.hire_id || r.rep_name === selectedHire.name,
+      ) || null
+    )
+  }, [existingSessions, selectedHire])
 
   const setupReady = !!selectedHire
 
@@ -102,6 +119,7 @@ export default function Offboarding() {
           name: selectedHire.name,
           territory: selectedHire.territory,
           vertical: selectedHire.vertical,
+          hire_id: selectedHire.hire_id,
         },
         qa_pairs,
       })
@@ -150,6 +168,7 @@ export default function Offboarding() {
           hiresLoading={hiresLoading}
           hiresError={hiresError}
           selectedHire={selectedHire}
+          existingForHire={existingForHire}
           ready={setupReady}
           onStart={startInterview}
         />
@@ -186,6 +205,7 @@ function SetupPhase({
   hiresLoading,
   hiresError,
   selectedHire,
+  existingForHire,
   ready,
   onStart,
 }) {
@@ -236,6 +256,18 @@ function SetupPhase({
             <ReadOnlyField label="Experience" value={selectedHire.experience_level} />
           </div>
         )}
+
+        {existingForHire && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800 flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+            <div>
+              <span className="font-semibold">You already submitted a debrief</span> on{" "}
+              {formatDate(existingForHire.created_at)}. Submitting again will{" "}
+              <span className="font-semibold">replace</span> it as your current debrief — your
+              manager will see the latest version.
+            </div>
+          </div>
+        )}
       </div>
 
       <button
@@ -244,7 +276,7 @@ function SetupPhase({
         className="mt-6 w-full bg-blue-500 text-white font-semibold py-3 rounded-md hover:bg-blue-600 hover:scale-[1.01] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
       >
         <Play className="h-4 w-4" />
-        Start debrief
+        {existingForHire ? "Start a replacement debrief" : "Start debrief"}
       </button>
     </div>
   )

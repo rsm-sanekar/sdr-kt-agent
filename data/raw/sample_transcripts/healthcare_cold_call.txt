@@ -1,0 +1,21 @@
+SDR: Hi, this is Sarah from Salesforce — I know I'm catching you cold, so I'll be quick. I work with provider-operations teams, and the ones I talk to are usually fighting duplicate data entry between their scheduling system and their CRM. Is that on your radar, or are you focused somewhere else right now?
+
+Prospect: It's on the radar, but honestly we already use a CRM and I'm not looking to rip anything out.
+
+SDR: Totally fair, and I'm not calling to get you to rip anything out. Quick question so I don't waste your time — when your coordinators move a referral from the scheduling system into the CRM, is that happening automatically today, or is someone re-keying it?
+
+Prospect: It's manual. Each coordinator probably spends a couple hours a week on it.
+
+SDR: Got it — so it's not a CRM problem, it's a handoff problem between two systems. A few provider-ops leaders I work with were losing roughly ten hours a week per coordinator to that exact re-keying. What would it mean for your team if that time went back to patient-facing work?
+
+Prospect: That'd be real. But anything we touch has to stay inside our HIPAA controls — that's non-negotiable.
+
+SDR: Agreed, and that's the first thing my team scopes — the unification runs inside your existing HIPAA boundary, nothing leaves it. I don't want to over-promise on a cold call, though. Who else would need to be in the room when you evaluate something like this — is that you, or is there an IT or compliance partner?
+
+Prospect: My IT director would have to weigh in, and probably our compliance lead.
+
+SDR: That's helpful — I'd want both of them on a short scoping call so the HIPAA questions get answered up front instead of derailing things later. Would a 30-minute call Thursday at 11 work, with you and your IT director? I'll send an agenda ahead of time so nobody's surprised.
+
+Prospect: Thursday at 11 could work. Send me the agenda and loop in my IT director — his name's Raymond.
+
+SDR: Perfect. I'll send a calendar invite to you and Raymond with a short agenda — the handoff problem, how the HIPAA boundary is preserved, and one peer example. Talk Thursday.

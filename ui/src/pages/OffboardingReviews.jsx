@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   Loader2,
@@ -8,6 +8,7 @@ import {
   ArrowRight,
   CheckCircle,
   ChevronRight,
+  Printer,
   RefreshCw,
 } from "lucide-react"
 import {
@@ -17,12 +18,15 @@ import {
 } from "../lib/api"
 import ApprovalCard from "../components/ApprovalCard"
 import EvidencePanel from "../components/EvidencePanel"
+import { formatConfidence, formatDate } from "../lib/format"
+import { printRegion } from "../lib/printDoc"
 
 const STATUS_STYLE = {
   paused: { cls: "bg-amber-100 text-amber-700", label: "Needs review" },
   pending: { cls: "bg-amber-100 text-amber-700", label: "Pending review" },
   complete: { cls: "bg-emerald-100 text-emerald-700", label: "Approved" },
   rejected: { cls: "bg-gray-100 text-gray-500", label: "Rejected" },
+  superseded: { cls: "bg-gray-100 text-gray-500", label: "Superseded" },
   error: { cls: "bg-red-100 text-red-700", label: "Error" },
 }
 
@@ -102,6 +106,7 @@ function ReviewQueueView() {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [expandedId, setExpandedId] = useState(null)
 
   const fetchRows = () => {
     setLoading(true)
@@ -177,27 +182,54 @@ function ReviewQueueView() {
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr
-                key={r.session_id}
-                onClick={() => navigate(`/offboarding-reviews/${r.session_id}`)}
-                className="border-t border-gray-100 hover:bg-blue-50/60 cursor-pointer transition-colors group"
-              >
-                <td className="px-5 py-3">
-                  <div className="font-semibold text-gray-900 group-hover:text-blue-600">
-                    {r.rep_name || "—"}
-                  </div>
-                  <div className="text-xs font-mono text-gray-400">{r.session_id}</div>
-                </td>
-                <td className="px-5 py-3 text-gray-700">{r.territory || "—"}</td>
-                <td className="px-5 py-3 text-gray-700">{r.vertical || "—"}</td>
-                <td className="px-5 py-3">
-                  <StatusBadge status={r.status} />
-                </td>
-                <td className="px-5 py-3 text-gray-700">{r.n_elements ?? "—"}</td>
-                <td className="px-5 py-3 text-gray-300 group-hover:text-blue-500">
-                  <ChevronRight className="h-4 w-4" />
-                </td>
-              </tr>
+              <Fragment key={r.session_id}>
+                <tr
+                  onClick={() => navigate(`/offboarding-reviews/${r.session_id}`)}
+                  className="border-t border-gray-100 hover:bg-blue-50/60 cursor-pointer transition-colors group"
+                >
+                  <td className="px-5 py-3">
+                    <div className="font-semibold text-gray-900 group-hover:text-blue-600">
+                      {r.rep_name || "—"}
+                    </div>
+                    <div className="text-xs font-mono text-gray-400">{r.session_id}</div>
+                    {r.prior_count > 0 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setExpandedId(expandedId === r.session_id ? null : r.session_id)
+                        }}
+                        className="mt-1 text-xs font-medium text-gray-400 hover:text-blue-600 flex items-center gap-1"
+                      >
+                        {expandedId === r.session_id ? "▾" : "▸"} {r.prior_count} earlier
+                        debrief{r.prior_count > 1 ? "s" : ""} (superseded)
+                      </button>
+                    )}
+                  </td>
+                  <td className="px-5 py-3 text-gray-700">{r.territory || "—"}</td>
+                  <td className="px-5 py-3 text-gray-700">{r.vertical || "—"}</td>
+                  <td className="px-5 py-3">
+                    <StatusBadge status={r.status} />
+                  </td>
+                  <td className="px-5 py-3 text-gray-700">{r.n_elements ?? "—"}</td>
+                  <td className="px-5 py-3 text-gray-300 group-hover:text-blue-500">
+                    <ChevronRight className="h-4 w-4" />
+                  </td>
+                </tr>
+                {expandedId === r.session_id &&
+                  (r.history || []).map((h) => (
+                    <tr key={h.session_id} className="bg-gray-50/70 text-xs text-gray-500">
+                      <td className="pl-10 pr-5 py-2 font-mono">{h.session_id}</td>
+                      <td className="px-5 py-2" colSpan={2}>
+                        submitted {formatDate(h.created_at)}
+                      </td>
+                      <td className="px-5 py-2" colSpan={3}>
+                        <span className="bg-gray-200 text-gray-500 rounded-full px-2 py-0.5">
+                          superseded
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+              </Fragment>
             ))}
           </tbody>
         </table>
@@ -208,6 +240,7 @@ function ReviewQueueView() {
 
 function ReviewDetailView({ sessionId }) {
   const navigate = useNavigate()
+  const printRef = useRef(null)
   const [session, setSession] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -299,10 +332,10 @@ function ReviewDetailView({ sessionId }) {
     || session.status === "complete" || session.status === "rejected"
 
   return (
-    <div>
+    <div ref={printRef}>
       <button
         onClick={() => navigate("/offboarding-reviews")}
-        className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-4"
+        className="no-print flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-4"
       >
         <ArrowLeft className="h-4 w-4" /> Back to queue
       </button>
@@ -316,7 +349,15 @@ function ReviewDetailView({ sessionId }) {
             {repInfo.territory} · {repInfo.vertical} · newly certified
           </div>
         </div>
-        <StatusBadge status={session.status} />
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => printRegion(printRef.current, `Onboarding debrief — ${repInfo.name}`)}
+            className="no-print bg-gray-100 text-gray-700 rounded-md px-3 py-1.5 text-xs font-semibold hover:bg-gray-200 transition-all flex items-center gap-1.5"
+          >
+            <Printer className="h-3.5 w-3.5" /> Print / Save PDF
+          </button>
+          <StatusBadge status={session.status} />
+        </div>
       </div>
 
       {error && (
@@ -350,7 +391,7 @@ function ReviewDetailView({ sessionId }) {
               </div>
               <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
                 <CheckCircle className="h-3 w-3 text-blue-500" />
-                Synthesis confidence: {Number(envelope.confidence || 0).toFixed(2)}
+                Synthesis confidence: {formatConfidence(envelope.confidence)}
               </div>
             </div>
           )}
@@ -378,6 +419,7 @@ function ReviewDetailView({ sessionId }) {
           <EvidencePanel sources={outputs.sources} title="Playbook sources used (RAG)" />
 
           {!finalized && (
+            <div className="no-print">
             <ApprovalCard
               status={decisionStatus}
               content={session.artifact_content || ""}
@@ -391,6 +433,7 @@ function ReviewDetailView({ sessionId }) {
                   : "Approve to share this debrief with the enablement team. Edit to fine-tune phrasing first. Reject to discard."
               }
             />
+            </div>
           )}
 
           {decisionDetail && (

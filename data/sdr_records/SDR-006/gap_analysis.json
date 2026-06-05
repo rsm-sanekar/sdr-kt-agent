@@ -1,7 +1,7 @@
 {
   "status": "ok",
   "next_action": "done",
-  "confidence": 0.85,
+  "confidence": 0.89,
   "review_required": false,
   "artifact_refs": [
     "01_certification_gap_analysis.md"
@@ -13,95 +13,81 @@
     "territory": "EMEA FinTech",
     "overall_recommendation": "PASS",
     "llm_overall_recommendation": "PASS",
-    "overall_rationale": "Synthetic gap analysis used in test fixtures \u2014 narrative of at least twenty characters.",
-    "weakest_dimension": "product_knowledge_accuracy",
+    "overall_rationale": "Liam's value messaging is the strongest in the cohort \u2014 quantifies cleanly, names specific peer outcomes, and frames the investment as a return rather than a cost. Senior-level fluency across all five dimensions. Ready for live calls.",
+    "weakest_dimension": "objection_handling",
     "dimension_findings": {
       "product_knowledge_accuracy": {
-        "score": 8,
+        "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for product_knowledge_accuracy from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for product_knowledge_accuracy.",
-        "gap_to_close": "Specific gap on product_knowledge_accuracy that needs addressing.",
-        "coaching_action": "Targeted coaching action for product_knowledge_accuracy.",
+        "evidence_quote": "Sales Cloud is built around the Opportunity object, Service Cloud around the Case object.",
+        "rationale": "Schema-level distinction; outcome framing per cloud.",
+        "gap_to_close": "No real gap.",
+        "coaching_action": "Continue trajectory.",
         "label": "Product knowledge accuracy"
       },
       "objection_handling": {
         "score": 8,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for objection_handling from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for objection_handling.",
-        "gap_to_close": "Specific gap on objection_handling that needs addressing.",
-        "coaching_action": "Targeted coaching action for objection_handling.",
+        "evidence_quote": "Defuse \u2014 Acknowledge the concern. Discover \u2014 Ask an open-ended question. Deliver \u2014 reframe to value.",
+        "rationale": "Names and uses the pattern; explicit avoidance of discounting first.",
+        "gap_to_close": "Minor \u2014 could go deeper on regulatory objection variants for FinTech.",
+        "coaching_action": "FinTech-specific objection library practice.",
         "label": "Objection handling (Defuse, Discover, Deliver)"
       },
       "meddic_application": {
         "score": 8,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for meddic_application from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for meddic_application.",
-        "gap_to_close": "Specific gap on meddic_application that needs addressing.",
-        "coaching_action": "Targeted coaching action for meddic_application.",
+        "evidence_quote": "Verdict: this is NOT yet a qualified opportunity. Sending a proposal now would be premature.",
+        "rationale": "Correctly identifies EB gap and proposes a question that unlocks two missing dimensions at once.",
+        "gap_to_close": "No real gap.",
+        "coaching_action": "Continue trajectory.",
         "label": "MEDDIC framework application"
       },
       "salesforce_value_messaging": {
-        "score": 8,
+        "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for salesforce_value_messaging from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for salesforce_value_messaging.",
-        "gap_to_close": "Specific gap on salesforce_value_messaging that needs addressing.",
-        "coaching_action": "Targeted coaching action for salesforce_value_messaging.",
+        "evidence_quote": "Two of your FinTech peers I worked with last quarter were stuck on the same math. Both used Sales Cloud + Data Cloud to enrich existing accounts. One added $8M in pipeline in two quarters with the same headcount.",
+        "rationale": "Quantifies (4x time, $8M, 8 weeks), names peer examples, frames as investment with return.",
+        "gap_to_close": "No real gap.",
+        "coaching_action": "Continue trajectory; lead value-messaging clinics for newer SDRs.",
         "label": "Salesforce value messaging"
       },
       "discovery_and_questioning": {
         "score": 8,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for discovery_and_questioning from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for discovery_and_questioning.",
-        "gap_to_close": "Specific gap on discovery_and_questioning that needs addressing.",
-        "coaching_action": "Targeted coaching action for discovery_and_questioning.",
+        "evidence_quote": "How are you thinking about getting there? Is that work your team has the capacity for, or is that a blocker?",
+        "rationale": "Open-ended, surfaces both pain and feasibility.",
+        "gap_to_close": "Minor \u2014 could ask one more question about Decision Process explicitly.",
+        "coaching_action": "Continue trajectory.",
         "label": "Discovery and questioning"
       }
     },
     "review_reasons": [],
     "retrieved_docs": [
       "certification_rubric.md",
-      "certification_questions.md",
-      "onboarding_policy.md",
-      "certification_rubric.md",
-      "trailhead_module_catalog.md"
+      "certification_questions.md"
     ],
     "sources": [
       {
         "doc_name": "certification_rubric.md",
-        "passage": "# SDR Certification Rubric",
-        "score": 21.5879,
-        "weak": false
-      },
-      {
-        "doc_name": "certification_questions.md",
-        "passage": "The five questions an SDR must answer during certification (Decision Gate 1), one per\nrubric dimension in `certification_rubric.md`. The trainer scores the candidate's answers\nagainst the rubric; the AI gap analysis cites these questions when surfacing evidence.",
-        "score": 20.6697,
-        "weak": false
-      },
-      {
-        "doc_name": "onboarding_policy.md",
-        "passage": "| Experience level | Required modules | Target completion |\n|---|---|---|\n| Entry (0\u20131 yrs prior sales) | SDR Fundamentals, Prospecting 101, Salesforce CRM Basics, Outreach Foundations, Discovery Calls I | End of Week 2 |\n| Mid (2\u20134 yrs prior sales) | Prospecting 201, Multi-Threading, Objection Handling Patterns, Industry Verticals Overview | End of Week 1 |\n| Senior (5+ yrs prior sales) | Strategic Account Mapping, Enterprise Discovery, Competitive Landscape Briefing | End of Week 1 |",
-        "score": 19.6133,
+        "passage": "Passing bar: an SDR should score 7 or above on every dimension. A score of 5-6 on any one dimension is a borderline result and requires trainer review. A score of 4 or below on any dimension is a fail on that dimension regardless of the others.",
+        "score": 0.92,
         "weak": false
       },
       {
         "doc_name": "certification_rubric.md",
-        "passage": "What a passing answer (7-10) looks like:\n- Acknowledges the objection before responding to it.\n- Asks a clarifying question rather than immediately firing back a counterpoint.\n- Reframes the concern into a value conversation.\n- Example of strong handling on a price objection: acknowledge, ask what is driving the\n  budget concern, then connect the product to a quantified business outcome rather than\n  defending the price.",
-        "score": 18.445,
+        "passage": "MEDDIC framework application \u2014 Common gap: SDRs conflate a helpful contact with the economic buyer, and book meetings that the AE later rejects. Coaching action: MEDDIC qualification drills.",
+        "score": 0.88,
         "weak": false
       },
       {
-        "doc_name": "trailhead_module_catalog.md",
-        "passage": "| Module ID | Title | Vertical | Level | URL |\n|---|---|---|---|---|\n| TRAIL-CRM-101 | Salesforce CRM Basics | any | entry | https://trailhead.salesforce.example/learn/modules/crm-basics |\n| TRAIL-CRM-201 | Advanced CRM Navigation | any | mid | https://trailhead.salesforce.example/learn/modules/crm-navigation-201 |\n| TRAIL-OUT-101 | Outreach Foundations | any | entry | https://trailhead.salesforce.example/learn/modules/outreach-foundations |\n| TRAIL-DISC-101 | Discovery Calls I | any | entry | https://trailhead.salesforce.example/learn/modules/discovery-calls-1 |\n| TRAIL-DISC-201 | Discovery Calls II | any | mid | https://trailhead.salesforce.example/learn/modules/discovery-calls-2 |\n| TRAIL-DISC-301 | Strategic Discovery | any | senior | https://trailhead.salesforce.example/learn/modules/strategic-discovery |\n| TRAIL-PROS-101 | Prospecting 101 | any | entry | https://trailhead.salesforce.example/learn/modules/prospecting-101 |\n| TRAIL-PROS-201 | Prospecting 201 | any | mid | https://trailhead.salesforce.example/learn/modules/prospecting-201 |\n| TRAIL-COLD-101 | Cold Call Mechanics | any | entry | https://trailhead.salesforce.example/learn/modules/cold-call-mechanics |\n| TRAIL-OBJ-101 | Objection Handling Patterns | any | entry | https://trailhead.salesforce.example/learn/modules/objection-handling-101 |\n| TRAIL-OBJ-201 | Advanced Objection Handling | any | mid | https://trailhead.salesforce.example/learn/modules/objection-handling-201 |\n| TRAIL-MULTI-301 | Multi-Threading Accounts | any | senior | https://trailhead.salesforce.example/learn/modules/multi-threading |\n| TRAIL-MEDDIC-301 | MEDDIC Deal Qualification | any | senior | https://trailhead.salesforce.example/learn/modules/meddic |\n| TRAIL-COMP-301 | Competitive Landscape Briefing | any | senior | https://trailhead.salesforce.example/learn/modules/competitive-landscape |\n| TRAIL-WIN-301 | Win-Room Participation | any | senior | https://trailhead.salesforce.example/learn/modules/win-room |\n| TRAIL-CRM-HYG-101 | Post-Call CRM Hygiene | any | entry | https://trailhead.salesforce.example/learn/modules/crm-hygiene |\n| TRAIL-VERT-HC-101 | HIPAA-Aware Selling | healthcare | entry | https://trailhead.salesforce.example/learn/modules/hipaa-aware-selling |\n| TRAIL-VERT-HC-201 | Healthcare Buyer Personas (Payer vs Provider) | healthcare | mid | https://trailhead.salesforce.example/learn/modules/healthcare-personas |\n| TRAIL-VERT-HC-301 | Veeva and Provider Workflows | healthcare | senior | https://trailhead.salesforce.example/learn/modules/veeva-provider |\n| TRAIL-VERT-FT-101 | Fintech Regulatory Landscape | fintech | entry | https://trailhead.salesforce.example/learn/modules/fintech-regulatory |\n| TRAIL-VERT-FT-201 | Core Banking Integration Patterns | fintech | mid | https://trailhead.salesforce.example/learn/modules/core-banking |\n| TRAIL-VERT-SAAS-101 | SaaS Pricing and Procurement | SaaS | entry | https://trailhead.salesforce.example/learn/modules/saas-pricing |\n| TRAIL-VERT-RET-101 | Retail Buying Cycles | retail | entry | https://trailhead.salesforce.example/learn/modules/retail-buying-cycles |\n| TRAIL-TERR-AMER-101 | AMER Outreach Cadence | any | entry | https://trailhead.salesforce.example/learn/modules/amer-cadence |\n| TRAIL-TERR-EMEA-101 | EMEA Outreach + GDPR Awareness | any | entry | https://trailhead.salesforce.example/learn/modules/emea-gdpr |\n| TRAIL-TERR-APAC-101 | APAC Regional Buying Customs | any | entry | https://trailhead.salesforce.example/learn/modules/apac-customs |",
-        "score": 17.0508,
+        "doc_name": "certification_questions.md",
+        "passage": "Q3 \u2014 MEDDIC framework application. Identify which elements are captured and which are missing. Would you call this a qualified opportunity ready for an AE handoff, or not?",
+        "score": 0.81,
         "weak": false
       }
-    ]
+    ],
+    "generated_at": "2026-06-05T07:47:09.337990+00:00"
   },
   "error": null
 }

@@ -3,6 +3,6 @@
 **Score:** 7.8/10
 **Date:** 2026-03-23
 
-What worked: discovery was excellent — five qualifying questions before any pitch language. Objection handling textbook: acknowledged, asked the real-concern question, reframed to value. Confirmed next step with a specific calendar time.
+What worked: opened on a concrete manufacturing pain (customer data split across plant ERPs) and earned the meeting by being specific. Good multi-threading instinct — asked who else touches the quoting process. Quantified the impact instead of pitching features.
 
-What to improve: small thing — the MEDDIC angle was implicit but never explicit. Next call, name the framework when scoping who else is in the decision (helps both you and the prospect).
+What to improve: the MEDDIC scoping stayed implicit. Next call, explicitly map the Economic Buyer — a CFO-level spend needs the budget owner named, not assumed.

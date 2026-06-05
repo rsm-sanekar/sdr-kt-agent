@@ -54,7 +54,7 @@ def test_all_sdr_profiles_returns_parseable_json_with_hire_001():
 
 def test_one_sdr_profile_known_hire():
     payload = json.loads(one_sdr_profile("HIRE-001"))
-    assert payload["name"] == "Priya Patel"
+    assert payload["name"] == "Priya Sharma"
     assert payload["territory"] == "EMEA"
     assert payload["vertical"] == "healthcare"
 

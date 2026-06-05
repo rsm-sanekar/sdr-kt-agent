@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import {
   Upload,
   Loader2,
@@ -8,8 +10,10 @@ import {
   Check,
   ArrowRight,
   MessageCircle,
+  Printer,
 } from "lucide-react"
-import { getHires, scoreCoaching, approveCoaching } from "../lib/api"
+import { getHires, scoreCoaching, approveCoaching, transcribeAudio } from "../lib/api"
+import { printRegion } from "../lib/printDoc"
 import ApprovalBar from "../components/ApprovalBar"
 import EvidencePanel from "../components/EvidencePanel"
 import ScoreBadge from "../components/ScoreBadge"
@@ -160,11 +164,14 @@ export default function CoachingNotes() {
   const [session, setSession] = useState(null)
   const [error, setError] = useState(null)
   const [dragOver, setDragOver] = useState(false)
+  const [transcribing, setTranscribing] = useState(false)
+  const [transcribeError, setTranscribeError] = useState(null)
 
   const [decisionStatus, setDecisionStatus] = useState("idle")
   const [decisionBusy, setDecisionBusy] = useState(false)
   const [decisionDetail, setDecisionDetail] = useState(null)
   const [activeTab, setActiveTab] = useState("score")
+  const printRef = useRef(null)
 
   useEffect(() => {
     getHires()
@@ -173,8 +180,24 @@ export default function CoachingNotes() {
       .finally(() => setHiresLoading(false))
   }, [])
 
-  const handleFile = (file) => {
+  const AUDIO_RE = /\.(mp3|wav|m4a|webm|mp4|aac|ogg|flac)$/i
+
+  const handleFile = async (file) => {
     if (!file) return
+    setTranscribeError(null)
+    const isAudio = file.type?.startsWith("audio/") || AUDIO_RE.test(file.name || "")
+    if (isAudio) {
+      setTranscribing(true)
+      try {
+        const res = await transcribeAudio(file)
+        setTranscriptText(String(res.transcript_text || ""))
+      } catch (err) {
+        setTranscribeError(err.message || "Transcription failed")
+      } finally {
+        setTranscribing(false)
+      }
+      return
+    }
     const reader = new FileReader()
     reader.onload = (e) => setTranscriptText(String(e.target?.result || ""))
     reader.readAsText(file)
@@ -351,19 +374,42 @@ export default function CoachingNotes() {
                   : "border-gray-200 bg-gray-50"
               }`}
             >
+              {transcribing && (
+                <div className="flex items-center gap-2 text-xs text-blue-600 mb-2 px-1">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Transcribing audio locally with Whisper… (first run downloads the model)
+                </div>
+              )}
+              {transcribeError && (
+                <div className="flex items-start gap-2 text-xs text-red-600 mb-2 px-1">
+                  <AlertCircle className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+                  {transcribeError}
+                </div>
+              )}
               <textarea
                 rows={8}
                 value={transcriptText}
                 onChange={(e) => setTranscriptText(e.target.value)}
-                disabled={generating}
-                placeholder='Paste the transcript here, drag-drop a .txt or .json file, or use the sample. Lines like "SDR: …" and "Prospect: …" are parsed automatically.'
-                className="w-full bg-white rounded-md px-3 py-2 text-sm font-mono leading-relaxed focus:outline-none resize-none"
+                disabled={generating || transcribing}
+                placeholder='Paste the transcript, drop a .txt/.json file, upload a call recording (.mp3/.wav/.m4a) to transcribe, or use a sample. Lines like "SDR: …" / "Prospect: …" are parsed automatically.'
+                className="w-full bg-white rounded-md px-3 py-2 text-sm font-mono leading-relaxed focus:outline-none resize-none disabled:opacity-60"
               />
               <div className="flex items-center justify-between gap-2 mt-2 px-1 flex-wrap">
-                <span className="text-xs text-gray-400 flex items-center gap-1">
+                <label className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer">
                   <Upload className="h-3 w-3" />
-                  Paste text, or drop a .txt / .json transcript
-                </span>
+                  Upload audio or text
+                  <input
+                    type="file"
+                    accept="audio/*,.txt,.json,.mp3,.wav,.m4a,.webm"
+                    className="hidden"
+                    disabled={generating || transcribing}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0]
+                      if (f) handleFile(f)
+                      e.target.value = ""
+                    }}
+                  />
+                </label>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-gray-400">Sample call:</span>
                   {SAMPLE_CALLS.map((c) => (
@@ -374,8 +420,9 @@ export default function CoachingNotes() {
                         setHireId(c.hire_id)
                         setCallContext(c.context)
                         setOutcome(c.outcome)
+                        setTranscribeError(null)
                       }}
-                      disabled={generating}
+                      disabled={generating || transcribing}
                       className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors disabled:opacity-40"
                     >
                       {c.label}
@@ -440,6 +487,20 @@ export default function CoachingNotes() {
 
           {outputs && !isError && (
             <>
+              <div className="flex justify-end">
+                <button
+                  onClick={() => printRegion(printRef.current, `Coaching note — ${session.hire_name || session.hire_id || ""}`)}
+                  className="no-print bg-gray-100 text-gray-700 rounded-md px-3 py-1.5 text-xs font-semibold hover:bg-gray-200 transition-all flex items-center gap-1.5"
+                >
+                  <Printer className="h-3.5 w-3.5" /> Print / Save PDF
+                </button>
+              </div>
+              {/* Print-only: the full rendered note (the on-screen view is tabbed). */}
+              <div ref={printRef} className="print-only prose prose-sm max-w-none">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {session.artifact_content || ""}
+                </ReactMarkdown>
+              </div>
               <ApprovalBar
                 status={decisionStatus}
                 content={session.artifact_content || ""}

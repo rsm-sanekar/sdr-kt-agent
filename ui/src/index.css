@@ -3,3 +3,23 @@
 @tailwind utilities;
 
 * { font-family: 'Outfit', sans-serif; }
+
+/* Print / Save-as-PDF: when printRegion() marks a node, hide everything else
+   and lay the marked region out from the top of the page. */
+@media print {
+  body.printing #root * { visibility: hidden; }
+  body.printing .print-region,
+  body.printing .print-region * { visibility: visible; }
+  body.printing .print-region {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .no-print { display: none !important; }
+  /* A block that only exists for the printed/PDF output (e.g. the full
+     coaching note, while the screen shows a tabbed view). */
+  body.printing .print-only.print-region { display: block; }
+}
+.print-only { display: none; }

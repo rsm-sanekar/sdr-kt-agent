@@ -133,7 +133,7 @@ def test_happy_path(tmp_path, capsys, monkeypatch):
     assert env["next_action"] == "done"
     assert env["outputs"]["weighted_total"] == _weighted(_DEFAULT_DIM_SCORES)
     assert env["outputs"]["persona_id"] == "cfo-saas"
-    assert env["outputs"]["persona_name"] == "Marcus Chen"
+    assert env["outputs"]["persona_name"] == "Gregory Hale"
     assert env["outputs"]["n_turns"] == 4
     assert env["outputs"]["review_reasons"] == []
     assert (tmp_path / "dbg-h" / "01_simulation_debrief.md").exists()

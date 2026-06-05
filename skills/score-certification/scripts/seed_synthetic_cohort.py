@@ -275,13 +275,43 @@ Missing:
 **Verdict**: this is NOT yet a qualified opportunity. Sending a proposal now would be premature — it would land with the Director and likely die at the VP's desk. My next move is to ask the Director directly: "Before I put together pricing, who else inside your organization weighs in on something at this scope, and what does your typical approval process look like?" That question gets me Economic Buyer and Decision Process in one move.
 """
 
-EXAM_PASS_VALUE = """### Q4 — Salesforce value messaging
+# Q4 (value messaging) — one strong answer per vertical so the PASS cohort
+# does not read as copy-paste. None greets the SDR's own name (the example is
+# addressed to a hypothetical prospect, not the candidate).
+EXAM_PASS_VALUE_FINTECH = """### Q4 — Salesforce value messaging
 
-For a VP of Sales at a 500-person SaaS company, I would lead with their outcome, not features.
+For a VP of Sales at a mid-market fintech, I lead with their outcome, not features.
 
-"Hi {first_name}, three SaaS VPs of Sales I worked with last quarter were under pressure to grow pipeline by 20-30% without adding headcount. The unlock for all three was using Sales Cloud's revenue intelligence layer to flag stalled deals 2-3 weeks earlier than their reps were spotting them. One team recovered roughly $4M in pipeline they would have otherwise lost to neglect, with the same team size. The win wasn't a feature — it was a forecast everyone trusted enough to act on. If that pattern resonates with your situation, I'd love 30 minutes to understand whether the same lever applies to your team."
+"The fintech revenue leaders I work with are usually under pressure to grow pipeline without loosening underwriting or risk controls. The teams that moved the needle used Sales Cloud's revenue intelligence to flag stalled deals two to three weeks earlier — one recovered about $3M in pipeline that quarter with the same headcount, and risk never had to slow them down. If that tension between growth and control sounds familiar, I'd want 30 minutes to see whether the same lever applies to your team."
 
-I quantify (20-30%, 2-3 weeks, $4M). I avoid claiming things I cannot back. I tie the investment to a business outcome (pipeline recovered with the same headcount). I do not list Sales Cloud features.
+I quantify ($3M, 2-3 weeks), tie the investment to a business outcome, and respect the risk constraint a fintech buyer cares about. I do not list features.
+"""
+
+EXAM_PASS_VALUE_FINTECH_BANKING = """### Q4 — Salesforce value messaging
+
+For a VP of Sales at an EMEA banking or capital-markets firm, I anchor on a number their CFO already watches.
+
+"Two capital-markets teams I worked with this year were leaking forecast accuracy because deal data lived in three systems. Once Sales Cloud became the single forecast everyone trusted, their commit-to-close slippage dropped from roughly 30% to under 15% in two quarters — same team, far fewer surprises in the board pack. If forecast trust is a live issue for you, that's the conversation I'd want to have."
+
+I lead with a metric leadership tracks (forecast accuracy), quantify the change, and avoid a feature list.
+"""
+
+EXAM_PASS_VALUE_HEALTHCARE = """### Q4 — Salesforce value messaging
+
+For a VP of Provider Operations in healthcare, I frame value in their language — staff and patient impact, not software.
+
+"The provider-operations leaders I work with are usually trying to free clinical and admin staff from duplicate data entry. One regional system unified referrals and outreach on Sales Cloud and Data Cloud and cut manual reconciliation by about 11 hours a week per coordinator — time that went back to patient-facing work, with HIPAA controls intact. If that reclaimed-capacity story is relevant, I'd love 30 minutes."
+
+I quantify (11 hours/week), tie it to a healthcare outcome, and name the HIPAA constraint a clinical buyer expects.
+"""
+
+EXAM_PASS_VALUE_MANUFACTURING = """### Q4 — Salesforce value messaging
+
+For a CFO at a manufacturer, I lead with margin and data, not CRM features.
+
+"The manufacturing CFOs I talk to are usually fighting customer data scattered across plant-level ERPs and a separate CRM. One built a single customer view on Data Cloud with Sales Cloud on top and shortened quote turnaround from days to hours, which protected roughly $5M in at-risk renewals last year. If fragmented customer data is costing you deals, that's the lever I'd want to explore."
+
+I quantify ($5M, days to hours), tie it to a CFO's P&L concern, and ground it in their real systems problem.
 """
 
 EXAM_PASS_DISCOVERY = """### Q5 — Discovery and questioning
@@ -396,6 +426,26 @@ What worked: discovery was excellent — five qualifying questions before any pi
 What to improve: small thing — the MEDDIC angle was implicit but never explicit. Next call, name the framework when scoping who else is in the decision (helps both you and the prospect).
 """
 
+COACHING_NOTE_STRONG_HEALTHCARE = """# Coaching note — call 1
+
+**Score:** {score}/10
+**Date:** {date}
+
+What worked: led with the provider's operational pressure before any product mention; four discovery questions surfaced the staffing pain in the buyer's own words. Handled the "we tried something like this" objection by acknowledging it and asking what specifically fell apart — a clean Discover step.
+
+What to improve: strong call overall — tighten the close. You confirmed interest but left the next step soft ("I'll follow up"). Next time, lock a specific calendar slot before you hang up.
+"""
+
+COACHING_NOTE_STRONG_MANUFACTURING = """# Coaching note — call 1
+
+**Score:** {score}/10
+**Date:** {date}
+
+What worked: opened on a concrete manufacturing pain (customer data split across plant ERPs) and earned the meeting by being specific. Good multi-threading instinct — asked who else touches the quoting process. Quantified the impact instead of pitching features.
+
+What to improve: the MEDDIC scoping stayed implicit. Next call, explicitly map the Economic Buyer — a CFO-level spend needs the budget owner named, not assumed.
+"""
+
 # ---------------------------------------------------------------------------
 # SDR cohort config
 # ---------------------------------------------------------------------------
@@ -462,7 +512,7 @@ COHORT = [
             {"call": 1, "date": "2026-03-18", "template": TRANSCRIPT_PASS_STRONG,
              "scores": {"opening": 8, "discovery": 9, "objection_handling": 8, "close": 8}},
         ],
-        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE + "\n" + EXAM_PASS_DISCOVERY,
+        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE_FINTECH + "\n" + EXAM_PASS_DISCOVERY,
         "exam_date": "2026-04-22",
         "coaching_note": {"call": 1, "score": 8.5, "date": "2026-03-20", "template": COACHING_NOTE_STRONG},
         "tutor_activity": {
@@ -606,9 +656,9 @@ COHORT = [
             {"call": 1, "date": "2026-03-19", "template": TRANSCRIPT_PASS_DISCOVERY,
              "scores": {"opening": 8, "discovery": 9, "objection_handling": 8, "close": 9}},
         ],
-        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE + "\n" + EXAM_PASS_DISCOVERY,
+        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE_HEALTHCARE + "\n" + EXAM_PASS_DISCOVERY,
         "exam_date": "2026-04-24",
-        "coaching_note": {"call": 1, "score": 8.5, "date": "2026-03-21", "template": COACHING_NOTE_STRONG},
+        "coaching_note": {"call": 1, "score": 8.5, "date": "2026-03-21", "template": COACHING_NOTE_STRONG_HEALTHCARE},
         "tutor_activity": {
             "top_topics": ["discovery", "MEDDIC", "healthcare compliance"],
             "flagged_gaps": [],
@@ -654,7 +704,7 @@ COHORT = [
             {"call": 1, "date": "2026-03-20", "template": TRANSCRIPT_PASS_VALUE_MESSAGING,
              "scores": {"opening": 8, "discovery": 8, "objection_handling": 8, "close": 9}},
         ],
-        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE + "\n" + EXAM_PASS_DISCOVERY,
+        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE_FINTECH_BANKING + "\n" + EXAM_PASS_DISCOVERY,
         "exam_date": "2026-04-25",
         "coaching_note": None,
         "tutor_activity": {
@@ -702,9 +752,9 @@ COHORT = [
             {"call": 1, "date": "2026-03-21", "template": TRANSCRIPT_PASS_PRODUCT_FLUENCY,
              "scores": {"opening": 8, "discovery": 8, "objection_handling": 7, "close": 8}},
         ],
-        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE + "\n" + EXAM_PASS_DISCOVERY,
+        "exam_template": EXAM_PASS_PRODUCT + "\n" + EXAM_PASS_OBJECTION + "\n" + EXAM_PASS_MEDDIC + "\n" + EXAM_PASS_VALUE_MANUFACTURING + "\n" + EXAM_PASS_DISCOVERY,
         "exam_date": "2026-04-26",
-        "coaching_note": {"call": 1, "score": 7.8, "date": "2026-03-23", "template": COACHING_NOTE_STRONG},
+        "coaching_note": {"call": 1, "score": 7.8, "date": "2026-03-23", "template": COACHING_NOTE_STRONG_MANUFACTURING},
         "tutor_activity": {
             "top_topics": ["Data Cloud", "manufacturing ERP integration", "multi-stakeholder selling"],
             "flagged_gaps": [],

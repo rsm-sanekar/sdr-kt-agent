@@ -1,11 +1,15 @@
 hire_id,name,territory,vertical,experience_level,prior_role
-HIRE-001,Priya Patel,EMEA,healthcare,entry,ex-pharma rep at Pfizer
-HIRE-002,Marcus Chen,AMER-West,SaaS,mid,inside sales at HubSpot for 3 years
+HIRE-001,Priya Sharma,EMEA,healthcare,entry,ex-pharma rep at Pfizer
+HIRE-002,Marcus Chen,AMER-West,fintech,mid,inside sales at HubSpot for 3 years
 HIRE-003,Sofia Ramirez,AMER-East,fintech,senior,account executive at Stripe covering mid-market
-HIRE-004,Liam O'Brien,EMEA,SaaS,entry,recent grad from Trinity College Dublin business program
-HIRE-005,Aisha Okonkwo,APAC,retail,mid,merchandising analyst at Shopify Singapore
-HIRE-006,Daniel Kim,AMER-West,healthcare,senior,medical device sales rep at Medtronic for 6 years
+HIRE-004,Liam O'Brien,EMEA,fintech,senior,five years BDR then AE at Revolut covering EMEA banking
+HIRE-005,Amara Okonkwo,APAC,retail,mid,merchandising analyst at Shopify Singapore
+HIRE-006,Daniel Cho,AMER-West,healthcare,senior,medical device sales rep at Medtronic for 6 years
 HIRE-007,Hannah Weiss,EMEA,fintech,mid,business development at Klarna Berlin
 HIRE-008,Raj Sundaram,APAC,SaaS,entry,customer success intern at Atlassian Bangalore
 HIRE-009,Emma Larsson,AMER-East,retail,senior,wholesale account manager at Nordstrom
 HIRE-010,Tomas Novak,APAC,fintech,mid,FX trader turned BDR at Wise Sydney
+HIRE-011,Aisha Patel,AMER-East,SaaS,entry,support engineer at Zendesk moving into sales
+HIRE-012,Diego Rodriguez,EMEA,retail,entry,store operations lead at Zara moving into SaaS sales
+HIRE-013,Sarah Kim,AMER-West,healthcare,mid,clinical research coordinator turned SDR
+HIRE-014,Yuki Tanaka,AMER-East,manufacturing,mid,supply-chain analyst at Toyota turned BDR

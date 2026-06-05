@@ -38,11 +38,11 @@ Missing:
 
 ### Q4 — Salesforce value messaging
 
-For a VP of Sales at a 500-person SaaS company, I would lead with their outcome, not features.
+For a CFO at a manufacturer, I lead with margin and data, not CRM features.
 
-"Hi Yuki, three SaaS VPs of Sales I worked with last quarter were under pressure to grow pipeline by 20-30% without adding headcount. The unlock for all three was using Sales Cloud's revenue intelligence layer to flag stalled deals 2-3 weeks earlier than their reps were spotting them. One team recovered roughly $4M in pipeline they would have otherwise lost to neglect, with the same team size. The win wasn't a feature — it was a forecast everyone trusted enough to act on. If that pattern resonates with your situation, I'd love 30 minutes to understand whether the same lever applies to your team."
+"The manufacturing CFOs I talk to are usually fighting customer data scattered across plant-level ERPs and a separate CRM. One built a single customer view on Data Cloud with Sales Cloud on top and shortened quote turnaround from days to hours, which protected roughly $5M in at-risk renewals last year. If fragmented customer data is costing you deals, that's the lever I'd want to explore."
 
-I quantify (20-30%, 2-3 weeks, $4M). I avoid claiming things I cannot back. I tie the investment to a business outcome (pipeline recovered with the same headcount). I do not list Sales Cloud features.
+I quantify ($5M, days to hours), tie it to a CFO's P&L concern, and ground it in their real systems problem.
 
 ### Q5 — Discovery and questioning
 

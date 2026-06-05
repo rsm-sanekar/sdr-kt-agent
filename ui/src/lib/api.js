@@ -63,6 +63,21 @@ export const approveCoaching = ({ session_id, decision, note = "", edited_conten
 export const getCoachingSession = (sessionId) =>
   fetch(`http://localhost:8000/coaching/sessions/${sessionId}`).then(r => r.json())
 
+// Local Whisper transcription of an uploaded call recording (no API key).
+export const transcribeAudio = async (file) => {
+  const form = new FormData()
+  form.append("file", file)
+  const res = await fetch(`http://localhost:8000/coaching/transcribe`, {
+    method: "POST",
+    body: form,
+  })
+  if (!res.ok) {
+    const detail = await res.json().catch(() => ({}))
+    throw new Error(detail.detail || `Transcription failed (${res.status})`)
+  }
+  return res.json()
+}
+
 // ---------------------------------------------------------------------------
 // Onboarding debrief (M04 — post-cert process questions → manager debrief)
 // ---------------------------------------------------------------------------

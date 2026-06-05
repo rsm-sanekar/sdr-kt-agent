@@ -8,9 +8,11 @@ import {
   Loader2,
   AlertCircle,
   Target,
-  HelpCircle,
+  GraduationCap,
+  MessageCircleQuestion,
 } from "lucide-react"
 import { getDashboardMetrics } from "../lib/api"
+import { formatScore } from "../lib/format"
 
 const PCT = (x) => `${Math.round((x || 0) * 100)}%`
 const DATE_FMT = new Intl.DateTimeFormat("en-US", {
@@ -196,47 +198,119 @@ function RecentDecisions({ decisions }) {
   )
 }
 
-const GAP_BADGE = {
-  low_confidence_query: { cls: "bg-amber-100 text-amber-700", label: "Low confidence" },
-  rejected_answer: { cls: "bg-red-100 text-red-700", label: "Rejected" },
-}
-
-function OpenGaps({ gaps }) {
+function CertFunnel({ summary }) {
+  if (!summary) return null
+  const cells = [
+    { label: "Pass", value: summary.pass, cls: "text-emerald-600", bg: "bg-emerald-50" },
+    { label: "Borderline", value: summary.borderline, cls: "text-amber-600", bg: "bg-amber-50" },
+    { label: "Fail", value: summary.fail, cls: "text-red-600", bg: "bg-red-50" },
+  ]
   return (
     <div className="bg-white border-2 border-gray-100 rounded-lg p-6">
       <div className="flex items-center gap-2 mb-4">
-        <HelpCircle className="h-4 w-4 text-gray-500" />
+        <GraduationCap className="h-4 w-4 text-gray-500" />
         <div className="text-xs uppercase tracking-wider text-gray-500 font-semibold">
-          Open gaps ({gaps?.length || 0})
+          Certification cohort
+        </div>
+        <span className="ml-auto text-xs text-gray-400">{summary.total} SDRs</span>
+      </div>
+      <div className="grid grid-cols-3 gap-3">
+        {cells.map((c) => (
+          <div key={c.label} className={`${c.bg} rounded-xl p-4 text-center`}>
+            <div className={`text-3xl font-extrabold ${c.cls}`}>{c.value}</div>
+            <div className="text-xs uppercase tracking-wider text-gray-500 mt-1">{c.label}</div>
+          </div>
+        ))}
+      </div>
+      {summary.top_weak_dimension && (
+        <div className="mt-4 text-sm text-gray-600">
+          Most common weak dimension:{" "}
+          <span className="font-semibold text-gray-900">{summary.top_weak_dimension}</span>
+        </div>
+      )}
+      {summary.not_analyzed > 0 && (
+        <div className="mt-1 text-xs text-gray-400">{summary.not_analyzed} not yet analyzed</div>
+      )}
+    </div>
+  )
+}
+
+function TraineeQuestions({ questions }) {
+  const needs = (questions || []).filter((q) => q.status === "needs_review")
+  const answered = (questions || []).filter((q) => q.status === "answered")
+  return (
+    <div className="bg-white border-2 border-gray-100 rounded-lg p-6">
+      <div className="flex items-center gap-2 mb-1">
+        <MessageCircleQuestion className="h-4 w-4 text-gray-500" />
+        <div className="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+          Trainee questions — be ready to answer
         </div>
       </div>
-      {!gaps || gaps.length === 0 ? (
-        <div className="text-sm text-gray-500">
-          No gaps logged. Low-confidence tutor answers and rejected answers land here.
-        </div>
+      <p className="text-xs text-gray-500 mb-4">
+        Questions trainees asked the AI Tutor. The flagged ones below are where the AI was unsure
+        or a reviewer rejected the answer — worth prepping a human answer or adding to the KB.
+      </p>
+      {!questions || questions.length === 0 ? (
+        <div className="text-sm text-gray-500">No tutor questions yet.</div>
       ) : (
-        <div className="flex flex-col gap-2">
-          {gaps.map((g, i) => {
-            const badge = GAP_BADGE[g.type] || { cls: "bg-gray-100 text-gray-700", label: g.type || "gap" }
-            return (
-              <div key={`${g.timestamp}-${i}`} className="bg-amber-50 rounded-md p-3 flex items-start gap-3">
-                <span className={`${badge.cls} rounded-full px-2 py-0.5 text-xs font-semibold flex-shrink-0`}>
-                  {badge.label}
-                </span>
-                <div className="flex-1 min-w-0 text-sm text-gray-700">
-                  <div className="font-medium truncate">{g.question || g.rejected_answer || "(no detail)"}</div>
-                  {g.reason && <div className="text-xs text-red-600 truncate">reason: {g.reason}</div>}
-                  {typeof g.confidence_score === "number" && (
-                    <div className="text-xs text-gray-500">best match {g.confidence_score.toFixed(2)}</div>
+        <div className="flex flex-col gap-4">
+          {needs.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {needs.map((q, i) => (
+                <div key={i} className="bg-amber-50 border border-amber-200 rounded-md p-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                        q.kind === "rejected"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-amber-100 text-amber-700"
+                      }`}
+                    >
+                      {q.kind === "rejected" ? "Rejected" : "Low confidence"}
+                    </span>
+                    {typeof q.confidence_score === "number" && (
+                      <span className="text-xs text-gray-500">match {formatScore(q.confidence_score)}</span>
+                    )}
+                    <span className="ml-auto text-xs text-gray-400">{formatTimestamp(q.timestamp)}</span>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900">{q.question}</div>
+                  {q.answer && (
+                    <div className="mt-1 text-xs text-gray-600">
+                      <span className="font-semibold">AI said:</span> {q.answer}
+                    </div>
                   )}
+                  <div className="mt-1 text-xs text-amber-700">{q.detail}</div>
                 </div>
-                <span className="text-xs text-gray-500 flex-shrink-0">{formatTimestamp(g.timestamp)}</span>
+              ))}
+            </div>
+          )}
+          {answered.length > 0 && (
+            <div>
+              <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">
+                Recently answered
               </div>
-            )
-          })}
+              <div className="flex flex-col gap-1.5">
+                {answered.map((q, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />
+                    <span className="flex-1 truncate">{q.question}</span>
+                    <span className="text-xs text-gray-400">{q.detail}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
+  )
+}
+
+function SectionHeading({ children }) {
+  return (
+    <h2 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3 mt-8">
+      {children}
+    </h2>
   )
 }
 
@@ -268,7 +342,7 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-extrabold text-gray-900 mb-1">Dashboard</h1>
           <p className="text-sm text-gray-500">
-            KB health, decision activity, and open gaps.
+            KB health, certification outcomes, tutor questions, and decision activity.
           </p>
         </div>
         <button
@@ -296,7 +370,8 @@ export default function Dashboard() {
 
       {metrics && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {/* KPI strip — every headline number, nothing dropped. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <MetricCard
               label="KB chunks"
               value={metrics.kb_chunk_count}
@@ -321,16 +396,33 @@ export default function Dashboard() {
               sublabel="tutor + chain + coaching + offboarding"
               accent="gray"
             />
+            <MetricCard
+              label="Open gaps"
+              value={metrics.open_gap_count || 0}
+              sublabel="low-confidence + rejected tutor answers"
+              accent="amber"
+            />
+            <MetricCard
+              label="Est. time saved"
+              value={`${Math.round(((metrics.estimated_time_saved_min || 0) / 60) * 10) / 10} hrs`}
+              sublabel="estimated from logged approvals — see estimates.md"
+              accent="emerald"
+            />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <SectionHeading>Certification &amp; decisions</SectionHeading>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <CertFunnel summary={metrics.certification_summary} />
             <RatesBreakdown summary={metrics} />
-            <BaselineTargets targets={metrics.baseline_targets} />
           </div>
 
+          <SectionHeading>AI Tutor — trainee questions</SectionHeading>
+          <TraineeQuestions questions={metrics.tutor_questions} />
+
+          <SectionHeading>Activity</SectionHeading>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <RecentDecisions decisions={metrics.recent_decisions} />
-            <OpenGaps gaps={metrics.open_gaps} />
+            <BaselineTargets targets={metrics.baseline_targets} />
           </div>
         </>
       )}

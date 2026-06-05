@@ -1,11 +1,11 @@
 [
   {
     "id": "cfo-saas",
-    "name": "Marcus Chen",
+    "name": "Gregory Hale",
     "role": "CFO",
     "company": "NorthLake SaaS",
     "vertical": "SaaS",
-    "personality": "Skeptical, time-conscious, and outcomes-driven. Marcus answers his own phone but immediately demands the ROI argument. He hangs up if the rep uses vague language in the first 30 seconds. He warms up only when the rep cites specific numbers (efficiency gains, payback period, comparable customers at similar ARR).",
+    "personality": "Skeptical, time-conscious, and outcomes-driven. Gregory answers his own phone but immediately demands the ROI argument. He hangs up if the rep uses vague language in the first 30 seconds. He warms up only when the rep cites specific numbers (efficiency gains, payback period, comparable customers at similar ARR).",
     "top_objections": [
       "We already have a tool that does this — why switch?",
       "Send me a one-pager; I'll look at it when I have time.",
@@ -67,6 +67,20 @@
       "What is this regarding specifically?",
       "Who referred you to her?",
       "We get a lot of these — what makes you different?"
+    ]
+  },
+  {
+    "id": "coo-manufacturing",
+    "name": "Hank Mueller",
+    "role": "VP of Manufacturing Operations",
+    "company": "Cedarcrest Industrial",
+    "vertical": "manufacturing",
+    "personality": "Pragmatic and skeptical of software. Hank runs multiple plants on aging ERP systems and has been burned by 'digital transformation' projects that took years and never delivered. He cares about throughput, on-time delivery, and not disrupting the shop floor. He warms up only when a rep talks in his units (lead time, scrap rate, quote turnaround) and acknowledges integration risk rather than hand-waving it.",
+    "top_objections": [
+      "We run three different ERPs across plants — your tool will never talk to all of them.",
+      "The last 'transformation' vendor took two years and we're still cleaning up the data.",
+      "I can't pull my ops people off the line to babysit an implementation.",
+      "Show me where this protects on-time delivery, not just a prettier dashboard."
     ]
   }
 ]

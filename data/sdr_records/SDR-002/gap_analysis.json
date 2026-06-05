@@ -1,7 +1,7 @@
 {
   "status": "ok",
   "next_action": "done",
-  "confidence": 0.9,
+  "confidence": 0.92,
   "review_required": false,
   "artifact_refs": [
     "01_certification_gap_analysis.md"
@@ -13,95 +13,81 @@
     "territory": "AMER FinTech",
     "overall_recommendation": "PASS",
     "llm_overall_recommendation": "PASS",
-    "overall_rationale": "Synthetic gap analysis used in test fixtures \u2014 narrative of at least twenty characters.",
-    "weakest_dimension": "product_knowledge_accuracy",
+    "overall_rationale": "Marcus consistently scores at or above the passing bar across all five dimensions. Objection handling shows clear use of the Defuse-Discover-Deliver pattern, MEDDIC application is rigorous (correctly identifies the EB gap in the qualification scenario), and discovery is genuinely open-ended. Ready for live calls with real prospects.",
+    "weakest_dimension": "objection_handling",
     "dimension_findings": {
       "product_knowledge_accuracy": {
-        "score": 8,
+        "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for product_knowledge_accuracy from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for product_knowledge_accuracy.",
-        "gap_to_close": "Specific gap on product_knowledge_accuracy that needs addressing.",
-        "coaching_action": "Targeted coaching action for product_knowledge_accuracy.",
+        "evidence_quote": "Sales Cloud is built around the Opportunity object, Service Cloud around the Case object. I would not blur them.",
+        "rationale": "Distinguishes the clouds at the schema level and ties each to a business outcome rather than features.",
+        "gap_to_close": "Minor \u2014 could add nuance on Data Cloud's role in the unified customer profile but not a real gap.",
+        "coaching_action": "Promote into a peer-coaching role for incoming hires on product fluency.",
         "label": "Product knowledge accuracy"
       },
       "objection_handling": {
         "score": 8,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for objection_handling from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for objection_handling.",
-        "gap_to_close": "Specific gap on objection_handling that needs addressing.",
-        "coaching_action": "Targeted coaching action for objection_handling.",
+        "evidence_quote": "Defuse \u2014 Acknowledge the concern and the emotion. Thank you for raising it directly. Discover \u2014 Ask an open-ended question to surface what's actually behind the objection.",
+        "rationale": "Names all three steps, includes a specific Discover question, and frames Deliver as reframing not arguing.",
+        "gap_to_close": "Minor \u2014 example was generic; a vertical-specific example would be even sharper.",
+        "coaching_action": "Roleplay with FinTech-specific objections (regulatory, security review timing) for additional fluency.",
         "label": "Objection handling (Defuse, Discover, Deliver)"
       },
       "meddic_application": {
         "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for meddic_application from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for meddic_application.",
-        "gap_to_close": "Specific gap on meddic_application that needs addressing.",
-        "coaching_action": "Targeted coaching action for meddic_application.",
+        "evidence_quote": "Verdict: this is NOT yet a qualified opportunity. Sending a proposal now would be premature \u2014 it would land with the Director and likely die at the VP's desk.",
+        "rationale": "Correctly identifies the EB gap, names Metrics and Decision Process as the other missing pieces, and proposes a single question that unlocks two of them at once.",
+        "gap_to_close": "No real gap \u2014 this is a textbook qualification call.",
+        "coaching_action": "Continue current trajectory.",
         "label": "MEDDIC framework application"
       },
       "salesforce_value_messaging": {
         "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for salesforce_value_messaging from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for salesforce_value_messaging.",
-        "gap_to_close": "Specific gap on salesforce_value_messaging that needs addressing.",
-        "coaching_action": "Targeted coaching action for salesforce_value_messaging.",
+        "evidence_quote": "One team recovered roughly $4M in pipeline they would have otherwise lost to neglect, with the same team size.",
+        "rationale": "Quantifies, ties to outcome (pipeline recovery with same headcount), avoids feature language.",
+        "gap_to_close": "Minor \u2014 could add a falsifiable citation source for the $4M number.",
+        "coaching_action": "Continue current trajectory; consider mentoring others on value framing.",
         "label": "Salesforce value messaging"
       },
       "discovery_and_questioning": {
-        "score": 8,
+        "score": 9,
         "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for discovery_and_questioning from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for discovery_and_questioning.",
-        "gap_to_close": "Specific gap on discovery_and_questioning that needs addressing.",
-        "coaching_action": "Targeted coaching action for discovery_and_questioning.",
+        "evidence_quote": "What's the operational metric your CEO is asking you to move this year, and how far are you from the number?",
+        "rationale": "Five truly open-ended questions, each surfacing either pain, MEDDIC inputs, or priority. No yes/no.",
+        "gap_to_close": "No real gap.",
+        "coaching_action": "Continue current trajectory.",
         "label": "Discovery and questioning"
       }
     },
     "review_reasons": [],
     "retrieved_docs": [
       "certification_rubric.md",
-      "certification_questions.md",
-      "onboarding_policy.md",
-      "certification_rubric.md",
-      "trailhead_module_catalog.md"
+      "certification_questions.md"
     ],
     "sources": [
       {
         "doc_name": "certification_rubric.md",
-        "passage": "# SDR Certification Rubric",
-        "score": 21.5879,
-        "weak": false
-      },
-      {
-        "doc_name": "certification_questions.md",
-        "passage": "The five questions an SDR must answer during certification (Decision Gate 1), one per\nrubric dimension in `certification_rubric.md`. The trainer scores the candidate's answers\nagainst the rubric; the AI gap analysis cites these questions when surfacing evidence.",
-        "score": 20.6697,
-        "weak": false
-      },
-      {
-        "doc_name": "onboarding_policy.md",
-        "passage": "| Experience level | Required modules | Target completion |\n|---|---|---|\n| Entry (0\u20131 yrs prior sales) | SDR Fundamentals, Prospecting 101, Salesforce CRM Basics, Outreach Foundations, Discovery Calls I | End of Week 2 |\n| Mid (2\u20134 yrs prior sales) | Prospecting 201, Multi-Threading, Objection Handling Patterns, Industry Verticals Overview | End of Week 1 |\n| Senior (5+ yrs prior sales) | Strategic Account Mapping, Enterprise Discovery, Competitive Landscape Briefing | End of Week 1 |",
-        "score": 19.6901,
+        "passage": "Passing bar: an SDR should score 7 or above on every dimension. A score of 5-6 on any one dimension is a borderline result and requires trainer review. A score of 4 or below on any dimension is a fail on that dimension regardless of the others.",
+        "score": 0.92,
         "weak": false
       },
       {
         "doc_name": "certification_rubric.md",
-        "passage": "What a passing answer (7-10) looks like:\n- Acknowledges the objection before responding to it.\n- Asks a clarifying question rather than immediately firing back a counterpoint.\n- Reframes the concern into a value conversation.\n- Example of strong handling on a price objection: acknowledge, ask what is driving the\n  budget concern, then connect the product to a quantified business outcome rather than\n  defending the price.",
-        "score": 18.445,
+        "passage": "MEDDIC framework application \u2014 Common gap: SDRs conflate a helpful contact with the economic buyer, and book meetings that the AE later rejects. Coaching action: MEDDIC qualification drills.",
+        "score": 0.88,
         "weak": false
       },
       {
-        "doc_name": "trailhead_module_catalog.md",
-        "passage": "| Module ID | Title | Vertical | Level | URL |\n|---|---|---|---|---|\n| TRAIL-CRM-101 | Salesforce CRM Basics | any | entry | https://trailhead.salesforce.example/learn/modules/crm-basics |\n| TRAIL-CRM-201 | Advanced CRM Navigation | any | mid | https://trailhead.salesforce.example/learn/modules/crm-navigation-201 |\n| TRAIL-OUT-101 | Outreach Foundations | any | entry | https://trailhead.salesforce.example/learn/modules/outreach-foundations |\n| TRAIL-DISC-101 | Discovery Calls I | any | entry | https://trailhead.salesforce.example/learn/modules/discovery-calls-1 |\n| TRAIL-DISC-201 | Discovery Calls II | any | mid | https://trailhead.salesforce.example/learn/modules/discovery-calls-2 |\n| TRAIL-DISC-301 | Strategic Discovery | any | senior | https://trailhead.salesforce.example/learn/modules/strategic-discovery |\n| TRAIL-PROS-101 | Prospecting 101 | any | entry | https://trailhead.salesforce.example/learn/modules/prospecting-101 |\n| TRAIL-PROS-201 | Prospecting 201 | any | mid | https://trailhead.salesforce.example/learn/modules/prospecting-201 |\n| TRAIL-COLD-101 | Cold Call Mechanics | any | entry | https://trailhead.salesforce.example/learn/modules/cold-call-mechanics |\n| TRAIL-OBJ-101 | Objection Handling Patterns | any | entry | https://trailhead.salesforce.example/learn/modules/objection-handling-101 |\n| TRAIL-OBJ-201 | Advanced Objection Handling | any | mid | https://trailhead.salesforce.example/learn/modules/objection-handling-201 |\n| TRAIL-MULTI-301 | Multi-Threading Accounts | any | senior | https://trailhead.salesforce.example/learn/modules/multi-threading |\n| TRAIL-MEDDIC-301 | MEDDIC Deal Qualification | any | senior | https://trailhead.salesforce.example/learn/modules/meddic |\n| TRAIL-COMP-301 | Competitive Landscape Briefing | any | senior | https://trailhead.salesforce.example/learn/modules/competitive-landscape |\n| TRAIL-WIN-301 | Win-Room Participation | any | senior | https://trailhead.salesforce.example/learn/modules/win-room |\n| TRAIL-CRM-HYG-101 | Post-Call CRM Hygiene | any | entry | https://trailhead.salesforce.example/learn/modules/crm-hygiene |\n| TRAIL-VERT-HC-101 | HIPAA-Aware Selling | healthcare | entry | https://trailhead.salesforce.example/learn/modules/hipaa-aware-selling |\n| TRAIL-VERT-HC-201 | Healthcare Buyer Personas (Payer vs Provider) | healthcare | mid | https://trailhead.salesforce.example/learn/modules/healthcare-personas |\n| TRAIL-VERT-HC-301 | Veeva and Provider Workflows | healthcare | senior | https://trailhead.salesforce.example/learn/modules/veeva-provider |\n| TRAIL-VERT-FT-101 | Fintech Regulatory Landscape | fintech | entry | https://trailhead.salesforce.example/learn/modules/fintech-regulatory |\n| TRAIL-VERT-FT-201 | Core Banking Integration Patterns | fintech | mid | https://trailhead.salesforce.example/learn/modules/core-banking |\n| TRAIL-VERT-SAAS-101 | SaaS Pricing and Procurement | SaaS | entry | https://trailhead.salesforce.example/learn/modules/saas-pricing |\n| TRAIL-VERT-RET-101 | Retail Buying Cycles | retail | entry | https://trailhead.salesforce.example/learn/modules/retail-buying-cycles |\n| TRAIL-TERR-AMER-101 | AMER Outreach Cadence | any | entry | https://trailhead.salesforce.example/learn/modules/amer-cadence |\n| TRAIL-TERR-EMEA-101 | EMEA Outreach + GDPR Awareness | any | entry | https://trailhead.salesforce.example/learn/modules/emea-gdpr |\n| TRAIL-TERR-APAC-101 | APAC Regional Buying Customs | any | entry | https://trailhead.salesforce.example/learn/modules/apac-customs |",
-        "score": 17.1304,
+        "doc_name": "certification_questions.md",
+        "passage": "Q3 \u2014 MEDDIC framework application. Identify which elements are captured and which are missing. Would you call this a qualified opportunity ready for an AE handoff, or not?",
+        "score": 0.81,
         "weak": false
       }
-    ]
+    ],
+    "generated_at": "2026-06-05T07:47:09.336421+00:00"
   },
   "error": null
 }

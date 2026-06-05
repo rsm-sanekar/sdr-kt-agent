@@ -2,13 +2,13 @@
 title: Onboarding escalation paths
 category: Operations
 last_reviewed: 2024-10-10
-owner: SDR Org Operations — Marcus Chen (Onboarding Operations)
+owner: SDR Org Operations — Trevor Ellison (Onboarding Operations)
 audience: new SDR hires, Trail Guides, SDR managers
 ---
 
 # Onboarding escalation paths
 
-When something goes wrong during onboarding, the wrong escalation costs more time than the original problem. This doc maps common failure modes to the correct owner and channel. Owner: **Marcus Chen, Onboarding Operations**.
+When something goes wrong during onboarding, the wrong escalation costs more time than the original problem. This doc maps common failure modes to the correct owner and channel. Owner: **Trevor Ellison, Onboarding Operations**.
 
 ## Day-1 IT problems
 

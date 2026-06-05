@@ -1,4 +1,4 @@
-# Hire summary — Daniel Kim (HIRE-006)
+# Hire summary — Daniel Cho (HIRE-006)
 
 ## Background
 Daniel is joining the AMER-West healthcare SDR team after six years selling medical devices at Medtronic. He is a senior hire transitioning from field sales (devices) into inside sales (SaaS) — same vertical, different motion. Very strong on healthcare-buyer fluency, new to Salesforce CRM and to outbound cadence-driven prospecting.

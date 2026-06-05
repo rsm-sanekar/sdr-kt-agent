@@ -3,6 +3,6 @@
 **Score:** 8.5/10
 **Date:** 2026-03-21
 
-What worked: discovery was excellent — five qualifying questions before any pitch language. Objection handling textbook: acknowledged, asked the real-concern question, reframed to value. Confirmed next step with a specific calendar time.
+What worked: led with the provider's operational pressure before any product mention; four discovery questions surfaced the staffing pain in the buyer's own words. Handled the "we tried something like this" objection by acknowledging it and asking what specifically fell apart — a clean Discover step.
 
-What to improve: small thing — the MEDDIC angle was implicit but never explicit. Next call, name the framework when scoping who else is in the decision (helps both you and the prospect).
+What to improve: strong call overall — tighten the close. You confirmed interest but left the next step soft ("I'll follow up"). Next time, lock a specific calendar slot before you hang up.

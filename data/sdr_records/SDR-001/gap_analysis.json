@@ -1,7 +1,7 @@
 {
   "status": "needs_review",
   "next_action": "done",
-  "confidence": 0.8,
+  "confidence": 0.97,
   "review_required": true,
   "artifact_refs": [
     "01_certification_gap_analysis.md"
@@ -11,59 +11,59 @@
     "sdr_name": "Priya Sharma",
     "cohort": "Spring 2026",
     "territory": "EMEA Healthcare",
-    "overall_recommendation": "BORDERLINE",
-    "llm_overall_recommendation": "BORDERLINE",
-    "overall_rationale": "Synthetic gap analysis used in test fixtures \u2014 narrative of at least twenty characters.",
-    "weakest_dimension": "objection_handling",
+    "overall_recommendation": "FAIL",
+    "llm_overall_recommendation": "FAIL",
+    "overall_rationale": "Priya scores below 5 on all five certification dimensions, indicating foundational gaps across product knowledge, objection handling, MEDDIC qualification, value messaging, and discovery \u2014 any single one of which would constitute an automatic fail under the rubric. The simulation transcripts confirm that the written assessment gaps are not isolated; they manifest consistently in live practice, with Priya unable to acknowledge objections properly, surface prospect pain, or ask a single open-ended discovery question across two recorded calls. A structured remediation plan covering TRAIL-CRM-101, TRAIL-VERT-HC-101, TRAIL-OBJ-101, TRAIL-MEDDIC-301, and TRAIL-DISC-101 should be completed before a re-certification attempt is scheduled.",
+    "weakest_dimension": "meddic_application",
     "dimension_findings": {
       "product_knowledge_accuracy": {
-        "score": 7,
-        "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for product_knowledge_accuracy from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for product_knowledge_accuracy.",
-        "gap_to_close": "Specific gap on product_knowledge_accuracy that needs addressing.",
-        "coaching_action": "Targeted coaching action for product_knowledge_accuracy.",
+        "score": 4,
+        "verdict": "fail",
+        "evidence_quote": "The Salesforce clouds are Sales Cloud, Service Cloud, Marketing Cloud, and Agentforce. Sales Cloud is for sales, Service Cloud is for service, Marketing Cloud is for marketing. Agentforce is the AI part.",
+        "rationale": "Priya lists only four clouds and reduces each to a one-line label with no business outcome context; she omits major clouds (Commerce Cloud, Health Cloud, Financial Services Cloud, Data Cloud, MuleSoft, Tableau) that are directly relevant to her EMEA Healthcare territory, and mischaracterises Agentforce as simply 'the AI part' rather than an autonomous agent platform layered across the Customer 360.",
+        "gap_to_close": "Candidate cannot differentiate Salesforce clouds beyond surface-level labels and has no awareness of Health Cloud, which is the primary cloud for her assigned territory; she also conflates Agentforce with a generic AI feature rather than articulating its distinct value proposition.",
+        "coaching_action": "Assign TRAIL-CRM-101 (Salesforce CRM Basics) immediately, then TRAIL-VERT-HC-101 (HIPAA-Aware Selling) and TRAIL-VERT-HC-201 (Healthcare Buyer Personas) before re-examination; conduct a 30-minute product deep-dive with her manager focused on Health Cloud use cases and Agentforce positioning.",
         "label": "Product knowledge accuracy"
       },
       "objection_handling": {
-        "score": 5,
-        "verdict": "borderline",
-        "evidence_quote": "Sample evidence quote for objection_handling from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for objection_handling.",
-        "gap_to_close": "Specific gap on objection_handling that needs addressing.",
-        "coaching_action": "Targeted coaching action for objection_handling.",
+        "score": 3,
+        "verdict": "fail",
+        "evidence_quote": "I hear that a lot, but Sales Cloud is different from what you probably have today... But Salesforce's AI is more advanced. Companies see big productivity gains.",
+        "rationale": "Priya neither acknowledges the prospect's concern genuinely nor asks a clarifying question to surface the real issue; she immediately pivots to a counter-claim ('but Sales Cloud is different'), which is the opposite of the Defuse/Discover/Deliver method required by the rubric, and she cannot substantiate the 30% productivity claim when challenged.",
+        "gap_to_close": "Candidate skips the Defuse and Discover steps entirely, jumping straight to an unsubstantiated counter-assertion; she has no mechanism to uncover what is actually driving the 'not looking right now' objection and cannot reframe to a quantified value conversation.",
+        "coaching_action": "Complete TRAIL-OBJ-101 (Objection Handling Patterns) this week; role-play the Defuse/Discover/Deliver framework on at least five price and 'happy with current vendor' objections with a senior SDR coach before the re-certification attempt.",
         "label": "Objection handling (Defuse, Discover, Deliver)"
       },
       "meddic_application": {
-        "score": 7,
-        "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for meddic_application from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for meddic_application.",
-        "gap_to_close": "Specific gap on meddic_application that needs addressing.",
-        "coaching_action": "Targeted coaching action for meddic_application.",
+        "score": 2,
+        "verdict": "fail",
+        "evidence_quote": "The Director of Operations is the champion. Pain is implied. We should send the proposal and see if they sign.",
+        "rationale": "Priya identifies only one MEDDIC element (Champion) and does so incorrectly \u2014 a Director of Ops who has not been developed or tested as an internal advocate is not a confirmed champion; she treats pain as 'implied' rather than discovered, ignores Metrics, Economic Buyer, Decision Criteria, and Decision Process entirely, and recommends sending a proposal with no qualification basis.",
+        "gap_to_close": "Candidate has no working knowledge of MEDDIC as a qualification framework; she cannot identify the Economic Buyer, has not surfaced quantified pain, and has no understanding of the decision process or criteria required before a handoff to an AE.",
+        "coaching_action": "Assign TRAIL-MEDDIC-301 (MEDDIC Deal Qualification) as a priority module; create a MEDDIC scorecard exercise where Priya must complete all six elements on a mock account before any simulated handoff is permitted; debrief with manager weekly until all six elements can be articulated fluently.",
         "label": "MEDDIC framework application"
       },
       "salesforce_value_messaging": {
-        "score": 7,
-        "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for salesforce_value_messaging from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for salesforce_value_messaging.",
-        "gap_to_close": "Specific gap on salesforce_value_messaging that needs addressing.",
-        "coaching_action": "Targeted coaching action for salesforce_value_messaging.",
+        "score": 3,
+        "verdict": "fail",
+        "evidence_quote": "Sales Cloud is a powerful platform with great features, AI capabilities, automation, and analytics. Companies see big productivity gains. The VP of Sales would benefit from increased rep productivity.",
+        "rationale": "Priya leads with features ('great features, AI capabilities, automation, analytics') rather than business outcomes, uses vague superlatives ('powerful platform', 'big productivity gains') with no quantification or customer evidence, and fails to connect the product to a specific, measurable return on investment for the prospect's context.",
+        "gap_to_close": "Candidate defaults to feature-dump messaging and cannot articulate a business outcome with a quantified return; she does not frame Salesforce as an investment with a calculable ROI, which is the core requirement of the value messaging dimension.",
+        "coaching_action": "Run a 'So What?' drill: for every feature Priya names, she must immediately state the business outcome and a quantified benchmark (e.g., 'automation reduces manual data entry by X hours per rep per week, freeing Y% of selling time'); assign two customer success stories from the Healthcare vertical to memorise and present back.",
         "label": "Salesforce value messaging"
       },
       "discovery_and_questioning": {
-        "score": 7,
-        "verdict": "pass",
-        "evidence_quote": "Sample evidence quote for discovery_and_questioning from the candidate's answer.",
-        "rationale": "Rationale grounded in the rubric for discovery_and_questioning.",
-        "gap_to_close": "Specific gap on discovery_and_questioning that needs addressing.",
-        "coaching_action": "Targeted coaching action for discovery_and_questioning.",
+        "score": 3,
+        "verdict": "fail",
+        "evidence_quote": "I would ask: 'Do you have a CRM?' 'Are you happy with your current CRM?' 'Would you like to learn more about Salesforce?' 'Do you have budget for a new CRM?' 'When are you looking to make a decision?'",
+        "rationale": "All five questions Priya lists are closed-ended yes/no questions that do not invite the prospect to elaborate; they are product-centric rather than problem-centric, gather almost no MEDDIC inputs, and in the simulation she does not build on any prospect response \u2014 she simply pivots to her next talking point.",
+        "gap_to_close": "Candidate has not developed open-ended, insight-led questioning skills; her question bank is entirely closed and product-focused, yielding no information about the prospect's business challenges, strategic priorities, or buying process \u2014 the foundational inputs for MEDDIC qualification.",
+        "coaching_action": "Complete TRAIL-DISC-101 (Discovery Calls I) immediately; rewrite her question bank replacing every closed question with an open-ended equivalent tied to a MEDDIC element (e.g., 'What does your current CRM not do that is costing your team time or revenue?' for Identify Pain); practice active listening and question-chaining in three recorded mock calls before re-certification.",
         "label": "Discovery and questioning"
       }
     },
     "review_reasons": [
-      "server-computed overall recommendation is BORDERLINE \u2014 trainer review required"
+      "server-computed overall recommendation is FAIL \u2014 trainer review required"
     ],
     "retrieved_docs": [
       "certification_rubric.md",

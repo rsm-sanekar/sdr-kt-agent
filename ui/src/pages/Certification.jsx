@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   Loader2,
@@ -10,6 +10,7 @@ import {
   Sparkles,
   FileText,
   ChevronRight,
+  Printer,
 } from "lucide-react"
 import {
   getCertificationRoster,
@@ -17,6 +18,7 @@ import {
   analyzeCertification,
   decideCertification,
 } from "../lib/api"
+import { printRegion } from "../lib/printDoc"
 import EvidencePanel from "../components/EvidencePanel"
 import ArtifactCard from "../components/ArtifactCard"
 
@@ -52,8 +54,16 @@ function VerdictBadge({ verdict }) {
   )
 }
 
+const DIMENSION_LABELS = {
+  product_knowledge_accuracy: "Product knowledge accuracy",
+  objection_handling: "Objection handling (Defuse, Discover, Deliver)",
+  meddic_application: "MEDDIC framework application",
+  salesforce_value_messaging: "Salesforce value messaging",
+  discovery_and_questioning: "Discovery and questioning",
+}
+
 function dimensionLabel(dimId, fallback) {
-  return fallback || dimId
+  return DIMENSION_LABELS[dimId] || fallback || dimId
 }
 
 function ScoreBar({ score, verdict }) {
@@ -365,6 +375,7 @@ function buildEvidenceSources(outputs) {
 
 function DetailView({ sdrId }) {
   const navigate = useNavigate()
+  const printRef = useRef(null)
   const [detail, setDetail] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -426,10 +437,10 @@ function DetailView({ sdrId }) {
   const overall = outputs?.overall_recommendation || "not_analyzed"
 
   return (
-    <div>
+    <div ref={printRef}>
       <button
         onClick={() => navigate("/certification")}
-        className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-4"
+        className="no-print flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-4"
       >
         <ArrowLeft className="h-4 w-4" /> Back to roster
       </button>
@@ -447,9 +458,15 @@ function DetailView({ sdrId }) {
           <div className="flex items-center gap-3">
             <VerdictBadge verdict={overall} />
             <button
+              onClick={() => printRegion(printRef.current, `Certification report — ${record.name || sdrId}`)}
+              className="no-print flex items-center gap-2 text-xs font-semibold bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md hover:bg-gray-200"
+            >
+              <Printer className="h-3.5 w-3.5" /> Print / Save PDF
+            </button>
+            <button
               onClick={handleAnalyze}
               disabled={analyzing}
-              className="flex items-center gap-2 text-xs font-semibold bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-md hover:border-blue-400 hover:text-blue-600 disabled:opacity-60"
+              className="no-print flex items-center gap-2 text-xs font-semibold bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-md hover:border-blue-400 hover:text-blue-600 disabled:opacity-60"
             >
               {analyzing ? (
                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -515,13 +532,15 @@ function DetailView({ sdrId }) {
       )}
 
       <JourneyContext record={record} resolvedArtifacts={detail?.resolved_artifacts} />
-      <RawArtifacts record={record} resolvedArtifacts={detail?.resolved_artifacts} />
+      <div className="no-print">
+        <RawArtifacts record={record} resolvedArtifacts={detail?.resolved_artifacts} />
 
-      <TrainerDecisionPanel
-        sdrId={sdrId}
-        gapAnalysis={gap}
-        onDecided={() => fetchDetail()}
-      />
+        <TrainerDecisionPanel
+          sdrId={sdrId}
+          gapAnalysis={gap}
+          onDecided={() => fetchDetail()}
+        />
+      </div>
     </div>
   )
 }

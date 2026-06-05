@@ -13,8 +13,11 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = REPO_ROOT / "skills" / "score-certification" / "scripts" / "score_certification.py"
+SDR_RECORDS_DIR = REPO_ROOT / "data" / "sdr_records"
 
 
 def _load_script_module():
@@ -22,6 +25,21 @@ def _load_script_module():
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+
+@pytest.fixture(autouse=True)
+def _preserve_cohort_gap_analyses():
+    """The cert skill caches its result to data/sdr_records/<id>/gap_analysis.json.
+    These tests intentionally run it against the real data dir with placeholder
+    mocks, which would clobber the demo cohort's real (seeded) gap analyses.
+    Snapshot every gap_analysis.json before the test and restore it after, so
+    running the suite never degrades the seeded demo data."""
+    snapshots = {p: p.read_bytes() for p in SDR_RECORDS_DIR.glob("*/gap_analysis.json")}
+    try:
+        yield
+    finally:
+        for path, content in snapshots.items():
+            path.write_bytes(content)
 
 
 # ---------------------------------------------------------------------------

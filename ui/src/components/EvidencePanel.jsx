@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { BookOpen, FileText, AlertTriangle, X } from "lucide-react"
+import { formatScore } from "../lib/format"
 
 /**
  * Compact chip-cluster source panel. One numbered pill per source — click to
@@ -81,7 +82,7 @@ export default function EvidencePanel({
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <span className="text-xs text-gray-500">
-                score {Number(open.score || 0).toFixed(3)}
+                score {formatScore(open.score)}
               </span>
               <button
                 onClick={() => setExpanded(null)}

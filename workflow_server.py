@@ -12,6 +12,7 @@ import json
 import os
 import re
 import subprocess
+import tempfile
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,7 +21,7 @@ from typing import Any
 import polars as pl
 import uvicorn
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -53,6 +54,7 @@ GAP_TRACKER_PATH = DATA_DIR / "gap_tracker.json"
 SCORE_COLD_CALL_SCRIPT = REPO_ROOT / "skills" / "score-cold-call" / "scripts" / "score_cold_call.py"
 COACHING_DIR = WORKING_DIR / "coaching"
 COACHING_SESSIONS: dict[str, dict[str, Any]] = {}
+COACHING_SESSIONS_PATH = DATA_DIR / "coaching_sessions.json"
 
 # Onboarding debrief (M04 — UI walks a newly-certified SDR through QUESTIONS.md,
 # the skill synthesizes a manager-facing program debrief grounded in the
@@ -60,6 +62,7 @@ COACHING_SESSIONS: dict[str, dict[str, Any]] = {}
 GENERATE_HANDOFF_DOC_SCRIPT = REPO_ROOT / "skills" / "generate-handoff-doc" / "scripts" / "generate_handoff_doc.py"
 OFFBOARDING_DIR = WORKING_DIR / "offboarding"
 OFFBOARDING_SESSIONS: dict[str, dict[str, Any]] = {}
+OFFBOARDING_SESSIONS_PATH = DATA_DIR / "offboarding_sessions.json"
 
 # Cold Call Simulation (M04 round 2 — trainee practices vs. an LLM-driven
 # persona; debrief uses Coaching Rubric v3.1). Both skills are stateless;
@@ -179,6 +182,7 @@ class OffboardingRepInfo(BaseModel):
     name: str
     territory: str
     vertical: str
+    hire_id: str | None = None
 
 
 class OffboardingQA(BaseModel):
@@ -564,6 +568,23 @@ def _append_decision(entry: dict[str, Any]) -> int:
     return _append_json_list(DECISION_LOG_PATH, entry)
 
 
+def _save_sessions(path: Path, sessions: dict[str, dict[str, Any]]) -> None:
+    """Persist an in-memory session store to disk so a server restart mid-demo
+    does not wipe submitted debriefs / coaching notes."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(sessions, indent=2), encoding="utf-8")
+
+
+def _load_sessions(path: Path) -> dict[str, dict[str, Any]]:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except json.JSONDecodeError:
+        return {}
+
+
 @app.post("/tutor/ask")
 def tutor_ask(req: TutorAskRequest) -> dict[str, Any]:
     if not req.question.strip():
@@ -578,6 +599,8 @@ def tutor_ask(req: TutorAskRequest) -> dict[str, Any]:
                 "type": "low_confidence_query",
                 "question": req.question,
                 "confidence_score": outputs.get("confidence_score"),
+                "answer": outputs.get("answer"),
+                "next_step": outputs.get("next_step"),
                 "timestamp": _now(),
             }
         )
@@ -672,6 +695,107 @@ def _decision_summary(entries: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+# Friendly labels for certification rubric dimensions (UI shows these).
+_CERT_DIM_LABELS = {
+    "product_knowledge_accuracy": "Product knowledge accuracy",
+    "objection_handling": "Objection handling",
+    "meddic_application": "MEDDIC application",
+    "salesforce_value_messaging": "Salesforce value messaging",
+    "discovery_and_questioning": "Discovery & questioning",
+}
+
+# Reasoned minutes-of-manager-time saved per logged decision, by feature.
+# Midpoints from estimates.md — labeled in the UI as an estimate, not measured.
+_TIME_SAVED_PER_FEATURE_MIN = {
+    "chain": 90,
+    "coaching": 22,
+    "certification": 52,
+    "offboarding": 65,
+    "tutor": 12,
+    "simulation": 15,
+}
+
+
+def _certification_summary() -> dict[str, Any]:
+    """Cohort certification funnel from the cached gap analyses."""
+    rows = certification_roster()
+    buckets = {"PASS": 0, "BORDERLINE": 0, "FAIL": 0, "not_analyzed": 0}
+    weak_counts: dict[str, int] = {}
+    for r in rows:
+        overall = (r.get("overall_recommendation") or "not_analyzed")
+        buckets[overall] = buckets.get(overall, 0) + 1
+        weak = r.get("weakest_dimension")
+        if weak:
+            weak_counts[weak] = weak_counts.get(weak, 0) + 1
+    top_weak = max(weak_counts, key=weak_counts.get) if weak_counts else None
+    return {
+        "pass": buckets.get("PASS", 0),
+        "borderline": buckets.get("BORDERLINE", 0),
+        "fail": buckets.get("FAIL", 0),
+        "not_analyzed": buckets.get("not_analyzed", 0),
+        "total": len(rows),
+        "weak_dimension_counts": {
+            _CERT_DIM_LABELS.get(k, k): v for k, v in sorted(weak_counts.items(), key=lambda kv: -kv[1])
+        },
+        "top_weak_dimension": _CERT_DIM_LABELS.get(top_weak, top_weak) if top_weak else None,
+    }
+
+
+def _estimated_time_saved_min(decisions: list[dict[str, Any]]) -> int:
+    """Rough manager-time saved, summed over logged decisions by feature."""
+    return sum(_TIME_SAVED_PER_FEATURE_MIN.get(e.get("feature", ""), 0) for e in decisions)
+
+
+def _tutor_question_review(
+    decisions: list[dict[str, Any]], gaps: list[dict[str, Any]], limit: int = 15
+) -> list[dict[str, Any]]:
+    """Unified view of trainee AI-Tutor questions for the manager, with the
+    poorly-answered ones (low confidence / rejected) surfaced first so the
+    manager can prepare a better answer or fill the KB."""
+    needs_review: list[dict[str, Any]] = []
+    for g in gaps:
+        if g.get("type") == "low_confidence_query":
+            needs_review.append({
+                "question": g.get("question"),
+                "status": "needs_review",
+                "kind": "low_confidence",
+                "detail": "Low confidence — answer may not be grounded in the KB",
+                "answer": g.get("answer"),
+                "next_step": g.get("next_step"),
+                "confidence_score": g.get("confidence_score"),
+                "timestamp": g.get("timestamp"),
+            })
+        elif g.get("type") == "rejected_answer":
+            needs_review.append({
+                "question": g.get("question"),
+                "status": "needs_review",
+                "kind": "rejected",
+                "detail": g.get("reason") or "Rejected by reviewer",
+                "answer": g.get("rejected_answer"),
+                "next_step": None,
+                "confidence_score": None,
+                "timestamp": g.get("timestamp"),
+            })
+    answered: list[dict[str, Any]] = []
+    for d in decisions:
+        if d.get("feature") != "tutor" or d.get("action") not in {"approve", "edit"}:
+            continue
+        ctx = d.get("context") or {}
+        answered.append({
+            "question": ctx.get("question"),
+            "status": "answered",
+            "kind": d.get("action"),
+            "detail": "Edited & approved" if d.get("action") == "edit" else "Approved",
+            "answer": None,
+            "next_step": None,
+            "confidence_score": None,
+            "timestamp": d.get("timestamp"),
+        })
+    needs_review.sort(key=lambda x: x.get("timestamp") or "", reverse=True)
+    answered.sort(key=lambda x: x.get("timestamp") or "", reverse=True)
+    return (needs_review + answered)[:limit]
+
+
 @app.get("/dashboard/metrics")
 def dashboard_metrics() -> dict[str, Any]:
     """Aggregate everything the dashboard needs in one round-trip.
@@ -708,8 +832,10 @@ def dashboard_metrics() -> dict[str, Any]:
         "by_feature": by_feature,
         "open_gap_count": len(gaps),
         "recent_decisions": list(reversed(decisions[-10:])),
-        "open_gaps": list(reversed(gaps[-10:])),
         "baseline_targets": DEMO_BASELINE_TARGETS,
+        "certification_summary": _certification_summary(),
+        "estimated_time_saved_min": _estimated_time_saved_min(decisions),
+        "tutor_questions": _tutor_question_review(decisions, gaps),
     }
 
 
@@ -853,6 +979,34 @@ def _coaching_session_status(envelope: dict[str, Any]) -> str:
     return "complete"
 
 
+@app.post("/coaching/transcribe")
+async def coaching_transcribe(file: UploadFile = File(...)) -> dict[str, Any]:
+    """Transcribe an uploaded call recording to text using local mlx-whisper.
+
+    Returns ``{"transcript_text": "..."}``. The user then labels the lines
+    SDR: / Prospect: in the textarea before scoring — the score endpoint's
+    parser already understands those role prefixes.
+    """
+    from utils.transcribe import TranscriptionUnavailable, transcribe_audio
+
+    suffix = Path(file.filename or "audio").suffix or ".wav"
+    tmp_path = None
+    try:
+        data = await file.read()
+        if not data:
+            raise HTTPException(status_code=400, detail="empty audio file")
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(data)
+            tmp_path = tmp.name
+        text = transcribe_audio(tmp_path)
+        return {"transcript_text": text, "filename": file.filename}
+    except TranscriptionUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+
+
 @app.post("/coaching/score")
 def coaching_score(req: CoachingScoreRequest) -> dict[str, Any]:
     if not req.transcript_text.strip():
@@ -902,6 +1056,7 @@ def coaching_score(req: CoachingScoreRequest) -> dict[str, Any]:
         "updated_at": now,
     }
     COACHING_SESSIONS[session_id] = session
+    _save_sessions(COACHING_SESSIONS_PATH, COACHING_SESSIONS)
     return session
 
 
@@ -952,6 +1107,7 @@ def coaching_approve(req: CoachingApprovalRequest) -> dict[str, Any]:
     )
 
     session["status"] = "rejected" if req.decision == "reject" else "complete"
+    _save_sessions(COACHING_SESSIONS_PATH, COACHING_SESSIONS)
     return session
 
 
@@ -1045,6 +1201,16 @@ def _offboarding_session_status(envelope: dict[str, Any]) -> str:
     return "complete"
 
 
+def _offboarding_identity(rep_info: dict[str, Any]) -> str:
+    """Stable key for one SDR's debriefs: prefer the hire_id, fall back to a
+    normalized name so older sessions (submitted before hire_id was carried)
+    still group correctly."""
+    hire_id = (rep_info or {}).get("hire_id")
+    if hire_id:
+        return f"hire:{hire_id}"
+    return f"name:{(rep_info or {}).get('name', '').strip().lower()}"
+
+
 @app.post("/offboarding/synthesize")
 def offboarding_synthesize(req: OffboardingSynthesizeRequest) -> dict[str, Any]:
     if not req.qa_pairs:
@@ -1069,9 +1235,25 @@ def offboarding_synthesize(req: OffboardingSynthesizeRequest) -> dict[str, Any]:
     artifact_content = _read_offboarding_artifact(session_id, envelope.get("artifact_refs") or [])
     now = _now()
 
+    rep_info = req.rep_info.model_dump()
+
+    # Supersede: a newly-certified SDR re-submitting replaces their prior
+    # debrief. Older sessions for the same identity are kept (collapsed into a
+    # per-SDR history in the manager queue) but marked superseded so the queue
+    # shows one current row per SDR instead of stacking duplicates.
+    identity = _offboarding_identity(rep_info)
+    for other in OFFBOARDING_SESSIONS.values():
+        if (
+            _offboarding_identity(other.get("rep_info") or {}) == identity
+            and other.get("status") != "superseded"
+        ):
+            other["status"] = "superseded"
+            other["superseded_by"] = session_id
+            other["updated_at"] = now
+
     session: dict[str, Any] = {
         "session_id": session_id,
-        "rep_info": req.rep_info.model_dump(),
+        "rep_info": rep_info,
         "envelope": envelope,
         "artifact_content": artifact_content,
         "status": _offboarding_session_status(envelope),
@@ -1080,6 +1262,7 @@ def offboarding_synthesize(req: OffboardingSynthesizeRequest) -> dict[str, Any]:
         "updated_at": now,
     }
     OFFBOARDING_SESSIONS[session_id] = session
+    _save_sessions(OFFBOARDING_SESSIONS_PATH, OFFBOARDING_SESSIONS)
     return session
 
 
@@ -1136,6 +1319,7 @@ def offboarding_approve(session_id: str, req: OffboardingApprovalRequest) -> dic
     )
 
     session["status"] = "rejected" if req.decision == "reject" else "complete"
+    _save_sessions(OFFBOARDING_SESSIONS_PATH, OFFBOARDING_SESSIONS)
     return session
 
 
@@ -1149,23 +1333,45 @@ def list_offboarding_sessions() -> list[dict[str, Any]]:
     without loading the full artifact content for each. Per-session detail is
     available via ``GET /offboarding/{session_id}``.
     """
-    rows: list[dict[str, Any]] = []
+    # Group every session by SDR identity (hire_id, else name). The manager
+    # queue shows ONE current row per SDR — the most recent submission — with
+    # any earlier debriefs collapsed into a read-only `history` list so a
+    # re-submission supersedes rather than stacks.
+    by_identity: dict[str, list[dict[str, Any]]] = {}
     for session_id, session in OFFBOARDING_SESSIONS.items():
         rep_info = session.get("rep_info") or {}
-        envelope = session.get("envelope") or {}
+        by_identity.setdefault(_offboarding_identity(rep_info), []).append(session)
+
+    rows: list[dict[str, Any]] = []
+    for sessions in by_identity.values():
+        ordered = sorted(sessions, key=lambda s: s.get("created_at") or "", reverse=True)
+        current = ordered[0]
+        rep_info = current.get("rep_info") or {}
+        envelope = current.get("envelope") or {}
         outputs = envelope.get("outputs") or {}
+        history = [
+            {
+                "session_id": s.get("session_id"),
+                "status": s.get("status"),
+                "created_at": s.get("created_at"),
+            }
+            for s in ordered[1:]
+        ]
         rows.append(
             {
-                "session_id": session_id,
+                "session_id": current.get("session_id"),
                 "rep_name": rep_info.get("name"),
+                "hire_id": rep_info.get("hire_id"),
                 "territory": rep_info.get("territory"),
                 "vertical": rep_info.get("vertical"),
-                "status": session.get("status", "pending"),
-                "created_at": session.get("created_at"),
-                "updated_at": session.get("updated_at"),
+                "status": current.get("status", "pending"),
+                "created_at": current.get("created_at"),
+                "updated_at": current.get("updated_at"),
                 "confidence": envelope.get("confidence"),
                 "review_required": envelope.get("review_required"),
                 "n_elements": outputs.get("n_elements"),
+                "prior_count": len(history),
+                "history": history,
             }
         )
     rows.sort(key=lambda r: r.get("created_at") or "", reverse=True)
@@ -1548,6 +1754,21 @@ def simulation_debrief(req: SimulationDebriefRequest) -> dict[str, Any]:
         "envelope": envelope,
         "artifact_content": artifact_content,
     }
+
+
+@app.on_event("startup")
+def _startup_load_sessions() -> None:
+    """Restore persisted debrief + coaching sessions so a server restart does
+    not wipe the demo. Non-fatal — the server still boots if the files are
+    missing or corrupt."""
+    OFFBOARDING_SESSIONS.update(_load_sessions(OFFBOARDING_SESSIONS_PATH))
+    COACHING_SESSIONS.update(_load_sessions(COACHING_SESSIONS_PATH))
+    if OFFBOARDING_SESSIONS or COACHING_SESSIONS:
+        print(
+            f"[startup] restored {len(OFFBOARDING_SESSIONS)} debrief + "
+            f"{len(COACHING_SESSIONS)} coaching session(s)",
+            flush=True,
+        )
 
 
 @app.on_event("startup")

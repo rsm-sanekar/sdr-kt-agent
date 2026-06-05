@@ -1,4 +1,4 @@
-# Hire summary — Priya Patel (HIRE-001)
+# Hire summary — Priya Sharma (HIRE-001)
 
 ## Background
 Priya is joining the EMEA healthcare SDR team in London after four years as a pharmaceutical sales rep at Pfizer. She comes in with strong clinical-buyer fluency and existing relationships in the NHS provider network. New to Salesforce as a CRM platform but very familiar with Veeva.
